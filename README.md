@@ -2,7 +2,7 @@
 A lite web based notepad for webspaces and server
 
 ---
-![example](./img/litepad.png)
+<img src="./img/litepad.png" alt="Example" height="300" width="auto">
 ---
 
 ## Requirements
