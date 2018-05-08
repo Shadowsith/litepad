@@ -1,6 +1,10 @@
 # litepad
 A lite web based notepad for webspaces and server
 
+---
+![example](./img/litepad.png)
+---
+
 ## Requirements
 This application requires only php installed on your webspace or server.<br>
 Bootstrap and the jQuery Framework are included by default.
