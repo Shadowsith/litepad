@@ -14,8 +14,10 @@ var path = 'src/php/ajax.php';
 $("#noteOpen").click(function() {
     $.ajax({    url: path,
                 type: 'get',
-                data: "noteTest", 
-                success: function(response) {alert(response);}
+                data: "noteOpen", 
+                success: function(response) {
+                    $("#notePad").val(response);  
+                }
     });
 });
 
@@ -25,9 +27,25 @@ $("#noteSave").click(function() {
     $.ajax({    url: path,
                 type: 'post',
                 data: {"noteName": title, "noteSave": "1", "noteText": text},
-                success: function(response) {alert(response + " " + title + " " + text);}
+                success: function(response) {
+                    alert(response);  
+                }
+
     });
 });
+
+$("#noteDelete").click(function() {
+    $.ajax({    url: path,
+                type: 'post',
+                data: "noteDelete", 
+                success: function(response) {
+                    alert(response); 
+                }
+    });
+});
+
+
+
 
 
 

@@ -6,7 +6,6 @@ define("NOTEFOLDER", "../../notes/");
 function litePadWriteNote($noteName, $noteText) {
     if (!empty($noteText) || !isset($noteText)) {
         $fileNums = countNotes();
-        //print("Note Written"); 
         if ($fileNums < 200) {
             writeNote($noteName, $noteText);
         } else {
@@ -25,8 +24,10 @@ function litePadReadNote($noteName) {
             $noteText = $noteText . fgets($note);
         }
         fclose($note);  
-        return $noteText; 
-    }
+        print($noteText); 
+    } else {
+        print("Please enter a valid note name"); 
+    } 
 }
 
 function litePadReloadNote($noteName) {
@@ -39,18 +40,22 @@ function litePadRenameNote($oldNoteName, $newNoteName) {
 
 function litePadDeleteNote($noteName) {
     $noteName = NOTEFOLDER . $noteName . ".txt"; 
-    unlink($noteName); 
+    if(file_exists($noteName)) {
+        unlink($noteName); 
+        print("File has been deleted!"); 
+    } else {
+        print("This file does not exist!"); 
+    }
 }
 
 function writeNote($noteName, $noteText) {
-    try {
-        $note = fopen(NOTEFOLDER . $noteName . ".txt", "w");
-        if(!fwrite($note, $noteText)) {
-            print("Writing fails"); 
-        }
-    } catch (Exception $e) {
-        print("Bla" . $e); 
+    $note = fopen(NOTEFOLDER . $noteName . ".txt", "w");
+    if(fwrite($note, $noteText)) {
+        print("File has been saved sucessfully!"); 
+    } else {
+        print("File could not be saved, internal server error!");
     }
+    fclose($note); 
 }
 
 function countNotes() {
