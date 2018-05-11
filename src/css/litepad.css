@@ -44,6 +44,10 @@ header {
     margin-top: 10px;
 }
 
+#noteEditor {
+    display: none;
+}
+
 
 #title {
 }
@@ -55,6 +59,12 @@ input[type="text"]#title {
 
 #editText {
     margin-top: 2px;    
+}
+
+#markdownText {
+    display: none; 
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 textarea {

@@ -10,7 +10,7 @@ function litePadWriteNote($noteName, $noteText) {
             writeNote($noteName, $noteText);
         } else {
             $errorMessage = "The maximum value of files in notes folder is reached";
-            return $errorMessage;
+            print($errorMessage);
         }   
     }
 }
@@ -50,9 +50,7 @@ function litePadDeleteNote($noteName) {
 
 function writeNote($noteName, $noteText) {
     $note = fopen(NOTEFOLDER . $noteName . ".txt", "w");
-    if(fwrite($note, $noteText)) {
-        print("File has been saved sucessfully!"); 
-    } else {
+    if(!fwrite($note, $noteText)) {
         print("File could not be saved, internal server error!");
     }
     fclose($note); 
@@ -72,7 +70,7 @@ function listNotes() {
 }
 
 // testing area:
-//
+
 
 ?>
 

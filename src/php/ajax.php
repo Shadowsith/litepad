@@ -1,22 +1,30 @@
 <?php
 require("./litepad.php");
 
-$noteName = $_POST['noteName']; 
-$noteText = $_POST['noteText'];
-$noteSave = $_POST['noteSave'];
-$noteDelete = $_POST['noteDelete']; 
-$noteOpen = $_GET['noteOpen'];
+$notePostName = $_POST['notePostName']; 
+$noteText =     $_POST['noteText'];
+$noteSave =     $_POST['noteSave'];
+$noteDelete =   $_POST['noteDelete']; 
 
-if (isset($noteName) && isset($noteSave) && isset($noteText)) {
-    litePadWriteNote($noteName, $noteText); 
+$noteGetName =  $_GET['noteGetName']; 
+$noteOpen =     $_GET['noteOpen'];
+$notePrint =    $_GET['notePrint'];
+
+
+if (isset($notePostName) && isset($noteSave) && isset($noteText)) {
+    litePadWriteNote($notePostName, $noteText); 
 }
 
-if(isset($noteName) && isset($noteOpen)) {
-    print(litePadReadNote($noteName)); 
+if(isset($noteGetName) && isset($noteOpen)) {
+    print(litePadReadNote($noteGetName)); 
 }
 
-if(isset($noteName) && isset($noteDelete)) {
+if(isset($notePostName) && isset($noteDelete)) {
     litePadDeleteNote($noteName); 
+}
+
+if(isset($notePrint)) {
+    print("Test"); 
 }
 
 ?>
