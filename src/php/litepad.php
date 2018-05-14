@@ -1,76 +1,88 @@
 <?php
-require("../../config.php"); 
+include('../../config.php'); 
 
-define("NOTEFOLDER", "../../notes/");
+class NoteIO 
+{
+    private const NOTEFOLDER = "../../notes/";  
 
-function litePadWriteNote($noteName, $noteText) {
-    if (!empty($noteText) || !isset($noteText)) {
-        $fileNums = countNotes();
-        if ($fileNums < 200) {
-            writeNote($noteName, $noteText);
-        } else {
-            $errorMessage = "The maximum value of files in notes folder is reached";
-            print($errorMessage);
-        }   
+    private $errorMsg = "The maximum value of files in notes folder is reached";
+    private $fileNotReadMsg = "File could not be saved, internal server error!"; 
+    private $deleteMsg = "File has been deleted!";
+    private $fileNotFoundMsg = "File could not be found!"; 
+    private $noteName; 
+    private $path; 
+
+    function __construct($name) {
+        $this->noteName = $name; 
+        $this->path = self::NOTEFOLDER . $this->noteName . ".txt"; 
     }
-}
 
-function litePadReadNote($noteName) {
-    $noteName = NOTEFOLDER . $noteName . ".txt"; 
-    if(file_exists($noteName)) {
-        $noteText = "";
-        $note = fopen($noteName, "r");
-        while(!feof($note)) {
-            $noteText = $noteText . fgets($note);
+    private function countNotes() {
+        $noteCount = new FilesystemIterator(self::NOTEFOLDER, FilesystemIterator::SKIP_DOTS);
+        return iterator_count($noteCount); 
+    }
+
+    public function getNoteName() {
+        return $this->noteName; 
+    }
+
+    public function setNoteName($name) {
+        $this->noteName = $name; 
+    }
+
+    public function writeNote($text)
+    {
+        if (!empty($text) || !isset($text)) {
+            $fileNums = $this->countNotes();
+            if ($fileNums < 200) {
+                $note = fopen($this->path, "w");
+                if(!fwrite($note, $text)) {
+                    print($this->fileNotReadMsg);
+                }
+                fclose($note); 
+            } else {
+                print($this->errorMsg);
+            }   
         }
-        fclose($note);  
-        print($noteText); 
-    } else {
-        print("Please enter a valid note name"); 
-    } 
-}
-
-function litePadReloadNote($noteName) {
-
-}
-
-function litePadRenameNote($oldNoteName, $newNoteName) {
-
-}
-
-function litePadDeleteNote($noteName) {
-    $noteName = NOTEFOLDER . $noteName . ".txt"; 
-    if(file_exists($noteName)) {
-        unlink($noteName); 
-        print("File has been deleted!"); 
-    } else {
-        print("This file does not exist!"); 
     }
-}
 
-function writeNote($noteName, $noteText) {
-    $note = fopen(NOTEFOLDER . $noteName . ".txt", "w");
-    if(!fwrite($note, $noteText)) {
-        print("File could not be saved, internal server error!");
+    public function readNote()
+    {
+        $text = "";
+        if(file_exists($this->path)) {
+            $note = fopen($this->path, "r");
+            while(!feof($note)) {
+                $text = $text . fgets($note);
+            }
+            fclose($note);  
+            print($text); 
+        } else {
+            print($this->fileNotFoundMsg); 
+        } 
     }
-    fclose($note); 
-}
 
-function countNotes() {
-    $noteCount = new FilesystemIterator(NOTEFOLDER, FilesystemIterator::SKIP_DOTS);
-    return iterator_count($noteCount); 
-}
+    public function renameNote($name) 
+    {
 
-function loadNote() {
+    }
 
-}
+    public function deleteNote() 
+    {
+        print("test");
+        if(file_exists($this->path)) {
+            unlink($this->path); 
+            print($this->deleteMsg); 
+        } else {
+            print("This file does not exist!"); 
+        }
+    }
 
-function listNotes() {
+    public function listNotes() {
 
+    }
 }
 
 // testing area:
-
 
 ?>
 

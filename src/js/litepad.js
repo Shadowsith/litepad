@@ -36,6 +36,7 @@ $("#noteOpen").click(function() {
                 type: 'get',
                 data: {"noteGetName": title, "noteOpen": "1"},
                 success: function(response) {
+                    $("notePad").val(""); 
                     $("#notePad").val(response);  
                 }
     });
@@ -56,11 +57,14 @@ $("#noteSave").click(function() {
 });
 
 $("#noteDelete").click(function() {
+    var title = $("#title").val();
     $.ajax({    url: path,
                 type: 'post',
-                data: "noteDelete", 
+                data: {'notePostName': title, 'noteDelete': '1'},  
                 success: function(response) {
-                    alert(response); 
+                    if (response != "\n") {
+                        alert(response); 
+                    }
                 }
     });
 });
