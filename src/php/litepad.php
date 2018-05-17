@@ -77,12 +77,16 @@ class NoteIO
         }
     }
 
-    public function listNotes() {
-
+    public function listNotes() 
+    {
+        $notes = preg_grep('/^([^.])/', scandir(self::NOTEFOLDER)); 
+        echo json_encode($notes);
     }
 }
 
 // testing area:
+$n = new NoteIO(""); 
+$n->listNotes(); 
 
 ?>
 

@@ -48,7 +48,6 @@ header {
     display: none;
 }
 
-
 #title {
 }
 
@@ -67,16 +66,20 @@ input[type="text"]#title {
     margin-top: 10px;
 }
 
+.modal {
+    position: absolute; 
+    display: block; 
+    top: 10px;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+}
+
 textarea {
     font-size: 10px;
-}
-
-#addbtn {
-
-}
-
-#savebtn {
-
 }
 
 footer {
