@@ -26,7 +26,8 @@ if (isset($note) && isset($noteSave) && isset($noteText)) {
 }
 
 if(isset($note) && isset($noteOpen)) {
-    print($note->readNote()); 
+    $note->listNotes(); 
+    #print($note->readNote()); 
 }
 
 if(isset($note) && isset($noteDelete)) {

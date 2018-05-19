@@ -30,24 +30,24 @@ $("#noteEditor").click(function() {
 // ajax
 var path = 'src/php/ajax.php';
 
-
-$("#noteOpen").click(function() {
-
-});
-
 /*
+$("#noteOpen").click(function() {
+    $("#noteList").append('<a href="#">Test</a><br>')
+});
+*/
+
 $("#noteOpen").click(function() {
     var title = $("#title").val();
     $.ajax({    url: path,
                 type: 'get',
                 data: {"noteGetName": title, "noteOpen": "1"},
                 success: function(response) {
-                    $("notePad").val(""); 
-                    $("#notePad").val(response);  
+                    //$("notePad").val(""); 
+                    //$("#notePad").val(response);  
+                    $("#notList").append(response[0]);  
                 }
     });
 });
-*/
 
 $("#noteSave").click(function() {
     var title = $("#title").val();

@@ -80,6 +80,9 @@ class NoteIO
     public function listNotes() 
     {
         $notes = preg_grep('/^([^.])/', scandir(self::NOTEFOLDER)); 
+        foreach($notes as $value) {
+            $value = '<a href="#">' . $value . '</a><br>'; 
+        }
         print(json_encode($notes));
     }
 }
