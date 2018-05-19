@@ -66,17 +66,20 @@ input[type="text"]#title {
     margin-top: 10px;
 }
 
-.modal {
+#noteList {
     position: absolute; 
-    display: block; 
-    top: 10px;
-    right: 100px;
-    bottom: 0;
-    left: 0;
-    z-index: 10040;
-    overflow: auto;
-    overflow-y: auto;
+    display: block;
+    top: 70px;
+    left: 70px; 
+    z-index: 5000; 
+    width: 200px;
+    height: 300px;
+    padding-left: 20px;
+    padding-top: 20px;
+    border-color: black; 
+    background-color: withe;
 }
+
 
 textarea {
     font-size: 10px;

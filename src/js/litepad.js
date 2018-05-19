@@ -30,6 +30,12 @@ $("#noteEditor").click(function() {
 // ajax
 var path = 'src/php/ajax.php';
 
+
+$("#noteOpen").click(function() {
+
+});
+
+/*
 $("#noteOpen").click(function() {
     var title = $("#title").val();
     $.ajax({    url: path,
@@ -41,6 +47,7 @@ $("#noteOpen").click(function() {
                 }
     });
 });
+*/
 
 $("#noteSave").click(function() {
     var title = $("#title").val();
