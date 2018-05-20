@@ -27,12 +27,28 @@ $("#noteEditor").click(function() {
     $("#markdownText").html("");
 });
 
+// ui handling ------------------------
+
+$("#noteAdd").click(function() {
+    $("#sidebar").width(0);
+    $('#notePad').attr('readonly', true); 
+    $('#notePad').addClass('input-disabled'); 
+    $("#noteAddForm").show(); 
+});
+
+$("#noteAddCloseBtn").click(function() {
+    $("#noteAddForm").hide(); 
+    $('#notePad').attr('readonly', false); 
+    $('#notePad').addClass('input-enabled'); 
+});
+
+
 // close file chooser if it is opened
 $("#noteListCloseBtn").click(function() {
     noteListClose(); 
 }); 
 
-// ajax
+// ajax ------------------------------------------
 var path = 'src/php/ajax.php';
 
 /*
@@ -40,6 +56,7 @@ $("#noteOpen").click(function() {
     $("#noteList").append('<a href="#">Test</a><br>')
 });
 */
+
 
 $("#noteOpen").click(function() {
     var title = $("#title").val();
@@ -53,6 +70,7 @@ $("#noteOpen").click(function() {
                     }
                     $('#notePad').attr('readonly', true); 
                     $('#notePad').addClass('input-disabled'); 
+                    $("#sidebar").width(0);
                     $("#noteList").show(); 
                 }
     });

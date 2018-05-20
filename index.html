@@ -18,6 +18,7 @@
         <header>
             <div id="sidebar" class="sidenav">
                 <button id="closeSidebar" type="button" class="btn btn-light closebtn">X</button>
+                <a id="noteAdd" href="#new">New</a>
                 <a id="noteOpen" href="#open">Open</a>
                 <a id="noteSave" href="#save">Save</a>
                 <a id="noteMarkup" href="#markup">Show Markup</a>
@@ -28,6 +29,13 @@
             <img id="openSidebar" src="./lib/glyphicons_free/glyphicons/png/glyphicons-159-show-lines.png" height="25" width="25"/>
             <input id="title" type="text" name="Title" value="Default" size="30">
         </header>
+
+        <div id="noteAddForm" class="border border-dark">
+            <h3><span id="noteAddBadge" class="badge badge-primary">Add a file:</span></h3>
+            <input type="text" class="form-control">
+            <button id="noteAddCreateBtn" class="btn btn-primary">Add</button>
+            <button id="noteAddCloseBtn" class="btn btn-primary">Cancel</button>
+        </div>
 
         <div id="noteList" class="border border-dark">
             <h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>
