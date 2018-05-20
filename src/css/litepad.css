@@ -68,16 +68,33 @@ input[type="text"]#title {
 
 #noteList {
     position: absolute; 
-    display: block;
+    display: none;
     top: 70px;
     left: 70px; 
     z-index: 1000; 
-    width: 200px;
+    width: 220px;
     height: 300px;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 40px;
     border-color: black; 
-    background-color: withe;
+    background-color: #fff;
+    overflow-y: auto; 
+}
+
+#noteListBadge {
+    position: absolute; 
+    top: 10px;
+    left: 5px; 
+}
+
+#noteListCloseBtn {
+    position: absolute; 
+    top: 5px;
+    left: 175px; 
+}
+
+.noteLoad {
+    font-size: 20px;
 }
 
 
@@ -86,7 +103,9 @@ textarea {
 }
 
 footer {
+    position: absolute; 
     bottom: 0;
     margin-bottom: 1%;
+    margin-left: 50%; 
     text-align: center;
 }

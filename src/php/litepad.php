@@ -80,13 +80,22 @@ class NoteIO
     public function listNotes() 
     {
         $notes = preg_grep('/^([^.])/', scandir(self::NOTEFOLDER)); 
+        foreach($notes as &$value) {
+            $value = substr($value, 0, -4); 
+        } 
+        $string = "";
         foreach($notes as $value) {
-            $value = '<a href="#">' . $value . '</a><br>'; 
+            $string = $string . '<a href="#" class="noteLoad">' . $value . '</a><br>' . ";";  
         }
-        print(json_encode($notes));
+        $string = substr($string, 0, strlen($string)-1);
+        $rpos = strrpos($string, ";"); 
+        $string = substr($string, 0, $rpos); 
+        print($string); 
     }
 }
 
 // testing area:
+//$n = new NoteIO("");
+//$n->listNotes(); 
 ?>
 

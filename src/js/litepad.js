@@ -27,6 +27,11 @@ $("#noteEditor").click(function() {
     $("#markdownText").html("");
 });
 
+// close file chooser if it is opened
+$("#noteListCloseBtn").click(function() {
+    noteListClose(); 
+}); 
+
 // ajax
 var path = 'src/php/ajax.php';
 
@@ -42,9 +47,30 @@ $("#noteOpen").click(function() {
                 type: 'get',
                 data: {"noteGetName": title, "noteOpen": "1"},
                 success: function(response) {
-                    //$("notePad").val(""); 
-                    //$("#notePad").val(response);  
-                    $("#notList").append(response[0]);  
+                    var re = String(response).split(";"); 
+                    for(var i = 0; i < re.length; i++) {
+                        $("#noteList").append(re[i]);
+                    }
+                    $('#notePad').attr('readonly', true); 
+                    $('#notePad').addClass('input-disabled'); 
+                    $("#noteList").show(); 
+                }
+    });
+});
+
+/*$(".noteLoad").on("click", ".noteLoad", function() {
+    alert("test"); 
+});*/ 
+
+$("#noteList").delegate("a.noteLoad", "click", function() {
+    var title = $(this).text();
+    $("#title").val(title); 
+    $.ajax({    url: path,
+                type: 'get',
+                data: {"noteGetName": title, "noteLoad": "1"},
+                success: function(response) {
+                    $("#notePad").val(response);
+                    noteListClose(); 
                 }
     });
 });
@@ -88,6 +114,15 @@ $("#notePrint").click(function() {
 });
 
 
+// functions 
+
+function noteListClose() {
+    $("#noteList").hide(); 
+    $("#noteList").children(".noteLoad").remove(); 
+    $("#noteList").children("br").remove();
+    $('#notePad').attr('readonly', false); 
+    $('#notePad').addClass('input-enabled'); 
+}
 
 
 

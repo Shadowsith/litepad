@@ -9,6 +9,7 @@ $noteDelete =   $_POST['noteDelete'];
 
 $noteGetName =  $_GET['noteGetName']; 
 $noteOpen =     $_GET['noteOpen'];
+$noteLoad =     $_GET['noteLoad']; 
 $notePrint =    $_GET['notePrint'];
 
 $note;
@@ -28,6 +29,10 @@ if (isset($note) && isset($noteSave) && isset($noteText)) {
 if(isset($note) && isset($noteOpen)) {
     $note->listNotes(); 
     #print($note->readNote()); 
+}
+
+if(isset($note) && isset($noteLoad)) {
+   $note->readNote();  
 }
 
 if(isset($note) && isset($noteDelete)) {
