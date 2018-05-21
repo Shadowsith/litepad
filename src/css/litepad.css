@@ -49,6 +49,14 @@ header {
 }
 
 #title {
+    position: absolute; 
+    left: 45px;
+    top: 5px; 
+    width: 250px;
+    height: 35px; 
+    font-size: 25px;
+    padding-left: 5px;
+    background-color: #fff;
 }
 
 input[type="text"]#title {
@@ -66,6 +74,12 @@ input[type="text"]#title {
     margin-top: 10px;
 }
 
+.formTitle {
+    padding-left: 10px; 
+    font-size: 25px; 
+    color: #fff; 
+}
+
 #noteAddForm {
     position: absolute; 
     display: none;
@@ -80,6 +94,15 @@ input[type="text"]#title {
     background-color: #fff; 
 }
 
+#noteAddTitle {
+    position: absolute; 
+    left: 0px;
+    top: 0px; 
+    width: 298px;
+    height: 40px;
+    background-color: #8A2BE2;
+}
+
 #noteAddCreateBtn {
     position: absolute;
     top: 75%;
@@ -91,8 +114,10 @@ input[type="text"]#title {
     left: 30%;
 }
 
-#noteAddCreateBtn {
-
+#noteAddInput {
+    position: absolute;
+    top: 30%;
+    width: 90%; 
 }
 
 #noteList {
@@ -110,16 +135,20 @@ input[type="text"]#title {
     overflow-y: auto; 
 }
 
-#noteListBadge {
+#noteListTitle {
     position: absolute; 
-    top: 10px;
-    left: 5px; 
+    top: 0px;
+    left: 0px; 
+    width: 218px;
+    height: 37px; 
+    background-color: #8A2BE2;
 }
 
 #noteListCloseBtn {
+    border-radius: 0 !important;
     position: absolute; 
-    top: 5px;
-    left: 175px; 
+    top: -1px;
+    left: 181px; 
 }
 
 .noteLoad {
@@ -136,3 +165,17 @@ footer {
     margin-bottom: 1%;
     text-align: center;
 }
+
+
+/* bootstrap changes */
+
+.btn-primary {
+    border-color: black; 
+    background-color: #8A2BE2;
+}
+
+.btn-primary:hover {
+    border-color: black; 
+    background-color: #8A2Ba0; 
+}
+

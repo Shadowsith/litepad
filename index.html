@@ -4,8 +4,6 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="src/css/litepad.css">
-
         <!--External Libraries-->
         <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
         <script type="text/javascript" src="./lib/jquery/jquery-3.3.1.min.js"></script>
@@ -13,6 +11,8 @@
         <script type="text/javascript" src="./lib/jquery.selection/src/jquery.selection.js"></script>
         <script type="text/javascript" src="./lib/jquery-announce/jquery.announce.min.js"></script>
         <!---------------------->
+
+        <link rel="stylesheet" type="text/css" href="src/css/litepad.css">
     </head>
     <body>
         <header>
@@ -27,18 +27,19 @@
                 <a id="noteDelete" href="#delete">Delete</a>
             </div>
             <img id="openSidebar" src="./lib/glyphicons_free/glyphicons/png/glyphicons-159-show-lines.png" height="25" width="25"/>
-            <input id="title" type="text" name="Title" value="Default" size="30">
+            <span id="title">Title</span>
         </header>
 
         <div id="noteAddForm" class="border border-dark">
-            <h3><span id="noteAddBadge" class="badge badge-primary">Add a file:</span></h3>
-            <input type="text" class="form-control">
+            <span id="noteAddTitle" class="formTitle">Add a file:</span>
+            <input id="noteAddInput" type="text" class="form-control">
             <button id="noteAddCreateBtn" class="btn btn-primary">Add</button>
             <button id="noteAddCloseBtn" class="btn btn-primary">Cancel</button>
         </div>
 
         <div id="noteList" class="border border-dark">
-            <h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>
+            <span id="noteListTitle" class="formTitle">Open a file:</span>
+            <!--<h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>-->
             <button id="noteListCloseBtn" class="btn btn-primary">X</button>
         </div>
 

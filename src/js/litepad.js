@@ -59,7 +59,7 @@ $("#noteOpen").click(function() {
 
 
 $("#noteOpen").click(function() {
-    var title = $("#title").val();
+    var title = $("#title").html();
     $.ajax({    url: path,
                 type: 'get',
                 data: {"noteGetName": title, "noteOpen": "1"},
@@ -81,8 +81,8 @@ $("#noteOpen").click(function() {
 });*/ 
 
 $("#noteList").delegate("a.noteLoad", "click", function() {
-    var title = $(this).text();
-    $("#title").val(title); 
+    var title = $(this).html();
+    $("#title").html(title); 
     $.ajax({    url: path,
                 type: 'get',
                 data: {"noteGetName": title, "noteLoad": "1"},
@@ -94,7 +94,7 @@ $("#noteList").delegate("a.noteLoad", "click", function() {
 });
 
 $("#noteSave").click(function() {
-    var title = $("#title").val();
+    var title = $("#title").html();
     var text = $("#notePad").val();
     $.ajax({    url: path,
                 type: 'post',
@@ -108,7 +108,7 @@ $("#noteSave").click(function() {
 });
 
 $("#noteDelete").click(function() {
-    var title = $("#title").val();
+    var title = $("#title").html();
     $.ajax({    url: path,
                 type: 'post',
                 data: {'notePostName': title, 'noteDelete': '1'},  
