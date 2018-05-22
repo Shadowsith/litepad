@@ -3,7 +3,7 @@ header {
     background-color: #8A2BE2;
     color: black;
     font-size: 20px; 
-    padding-left: 10px;
+    padding-left: 5px;
     padding-top: 8px;
     padding-bottom: 8px;
     display: block; 
@@ -39,21 +39,28 @@ header {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 20px;
+    font-size: 30px;
     margin-left: 60px;
     margin-top: 10px;
+    height: 40px;
+    width: 40px; 
+    padding-top: 5px !important;
+    padding-left: 5px !important;
 }
 
 #noteEditor {
     display: none;
 }
 
+#openSidebar {
+}
+
 #title {
     position: absolute; 
-    left: 45px;
-    top: 5px; 
+    left: 60px;
+    top: 8px; 
     width: 250px;
-    height: 35px; 
+    height: 38px; 
     font-size: 25px;
     padding-left: 5px;
     background-color: #fff;
@@ -84,7 +91,7 @@ input[type="text"]#title {
     position: absolute; 
     display: none;
     top: 70px;
-    left: 30px;
+    left: 20px;
     z-index: 1000;
     width: 300px;
     height: 200px;
@@ -148,8 +155,22 @@ input[type="text"]#title {
     border-radius: 0 !important;
     position: absolute; 
     top: -1px;
-    left: 181px; 
+    left: 180px; 
+    padding-left: 7px !important;
+    padding-top: 6px !important; 
+    width: 38px;
 }
+
+#noteSettingsForm {
+    position: absolute;
+    top: 70px;
+    left: 30px; 
+    background-color: #fff; 
+    width: 220px;
+    height: 350px; 
+}
+
+#noteSettings
 
 .noteLoad {
     font-size: 20px;
@@ -178,4 +199,19 @@ footer {
     border-color: black; 
     background-color: #8A2Ba0; 
 }
+
+.btn-primary:focus {
+    outline-color: #fff !important;
+    border-color: black !important; 
+    box-shadow: 0 0 5px black !important;
+    background-color: #8a2b70 !important; 
+}
+
+.btn-primary:active {
+    outline-color:  #fff  !important;
+    border-color: black !important; 
+    box-shadow: 0 0 5px black !important;
+    background-color: #8a2b70 !important; 
+}
+
 

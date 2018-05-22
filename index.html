@@ -6,6 +6,7 @@
 
         <!--External Libraries-->
         <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type"text/css" href="./lib/material/material-icons.css">
         <script type="text/javascript" src="./lib/jquery/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./lib/showdown/dist/showdown.min.js"></script>
         <script type="text/javascript" src="./lib/jquery.selection/src/jquery.selection.js"></script>
@@ -17,7 +18,7 @@
     <body>
         <header>
             <div id="sidebar" class="sidenav">
-                <button id="closeSidebar" type="button" class="btn btn-light closebtn">X</button>
+                <button id="closeSidebar" type="button" class="btn btn-light closebtn material-icons">close</button>
                 <a id="noteAdd" href="#new">New</a>
                 <a id="noteOpen" href="#open">Open</a>
                 <a id="noteSave" href="#save">Save</a>
@@ -25,9 +26,10 @@
                 <a id="noteEditor" href="#editor">Show Editor</a>
                 <a id="notePrint" href="#print">Print</a>
                 <a id="noteDelete" href="#delete">Delete</a>
+                <a id="noteSettings" href="#settings">Settings</a>
             </div>
-            <img id="openSidebar" src="./lib/glyphicons_free/glyphicons/png/glyphicons-159-show-lines.png" height="25" width="25"/>
-            <span id="title">Title</span>
+            <button id="openSidebar" class="btn btn-dark material-icons">view_list</button>
+            <span id="title" class="border border-dark">Title</span>
         </header>
 
         <div id="noteAddForm" class="border border-dark">
@@ -40,7 +42,11 @@
         <div id="noteList" class="border border-dark">
             <span id="noteListTitle" class="formTitle">Open a file:</span>
             <!--<h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>-->
-            <button id="noteListCloseBtn" class="btn btn-primary">X</button>
+            <button id="noteListCloseBtn" class="btn btn-primary material-icons">close</button>
+        </div>
+
+        <div id="noteSettingsForm" class="border border-dark">
+            <span id="noteSettingsTitle" class="formTitle">Settings</span> 
         </div>
 
         <div id="editText" class="form-group">

@@ -33,11 +33,11 @@ $("#noteAdd").click(function() {
     $("#sidebar").width(0);
     $('#notePad').attr('readonly', true); 
     $('#notePad').addClass('input-disabled'); 
-    $("#noteAddForm").show(); 
+    $("#noteAddForm").fadeIn(); 
 });
 
 $("#noteAddCloseBtn").click(function() {
-    $("#noteAddForm").hide(); 
+    $("#noteAddForm").fadeOut(); 
     $('#notePad').attr('readonly', false); 
     $('#notePad').addClass('input-enabled'); 
 });
@@ -57,6 +57,29 @@ $("#noteOpen").click(function() {
 });
 */
 
+//TODO write a proofment if the file already exisits (protect to be overwritten)
+$("#noteAddCreateBtn").click(function() {
+    var title = $("#noteAddInput").val(); 
+    var text = ""; 
+    if ( title != "" ) {
+        $.ajax({    url: path,
+                    type: 'post',
+                    data: {"notePostName": title, "noteSave": "1", "noteText": text},
+                    success: function(response) {
+                        if (response != "\n") {
+                            alert(response); 
+                        }
+                    }
+        });
+        $("#noteAddForm").fadeOut(); 
+        $("#title").html(title); 
+        $('#notePad').attr('readonly', false); 
+        $('#notePad').addClass('input-enabled'); 
+    } else {
+        alert("Please enter a valid name for your note"); 
+    }
+});
+
 
 $("#noteOpen").click(function() {
     var title = $("#title").html();
@@ -71,7 +94,7 @@ $("#noteOpen").click(function() {
                     $('#notePad').attr('readonly', true); 
                     $('#notePad').addClass('input-disabled'); 
                     $("#sidebar").width(0);
-                    $("#noteList").show(); 
+                    $("#noteList").fadeIn(); 
                 }
     });
 });
@@ -135,7 +158,7 @@ $("#notePrint").click(function() {
 // functions 
 
 function noteListClose() {
-    $("#noteList").hide(); 
+    $("#noteList").fadeOut(); 
     $("#noteList").children(".noteLoad").remove(); 
     $("#noteList").children("br").remove();
     $('#notePad').attr('readonly', false); 
