@@ -30,23 +30,25 @@ $("#noteEditor").click(function() {
 // ui handling ------------------------
 
 $("#noteAdd").click(function() {
-    $("#sidebar").width(0);
-    $('#notePad').attr('readonly', true); 
-    $('#notePad').addClass('input-disabled'); 
-    $("#noteAddForm").fadeIn(); 
+    formOpen($("#noteAddForm"));
 });
 
 $("#noteAddCloseBtn").click(function() {
-    $("#noteAddForm").fadeOut(); 
-    $('#notePad').attr('readonly', false); 
-    $('#notePad').addClass('input-enabled'); 
+    formClose($("#noteAddForm"));
 });
-
 
 // close file chooser if it is opened
 $("#noteListCloseBtn").click(function() {
-    noteListClose(); 
+    noteListClose();
 }); 
+
+$("#noteSettings").click(function() {
+    formOpen($("#noteSettingsForm"));
+});
+
+$("#noteSettingsCloseBtn").click(function () {
+    formClose($("#noteSettingsForm")); 
+});
 
 // ajax ------------------------------------------
 var path = 'src/php/ajax.php';
@@ -71,10 +73,8 @@ $("#noteAddCreateBtn").click(function() {
                         }
                     }
         });
-        $("#noteAddForm").fadeOut(); 
         $("#title").html(title); 
-        $('#notePad').attr('readonly', false); 
-        $('#notePad').addClass('input-enabled'); 
+        formClose($("#noteAddForm"));
     } else {
         alert("Please enter a valid name for your note"); 
     }
@@ -91,12 +91,12 @@ $("#noteOpen").click(function() {
                     for(var i = 0; i < re.length; i++) {
                         $("#noteList").append(re[i]);
                     }
-                    $('#notePad').attr('readonly', true); 
-                    $('#notePad').addClass('input-disabled'); 
-                    $("#sidebar").width(0);
-                    $("#noteList").fadeIn(); 
                 }
     });
+    $('#notePad').attr('readonly', true); 
+    $('#notePad').addClass('input-disabled'); 
+    $("#sidebar").width(0);
+    $("#noteList").fadeIn(); 
 });
 
 /*$(".noteLoad").on("click", ".noteLoad", function() {
@@ -158,13 +158,21 @@ $("#notePrint").click(function() {
 // functions 
 
 function noteListClose() {
-    $("#noteList").fadeOut(); 
+    formClose("#noteList");
     $("#noteList").children(".noteLoad").remove(); 
     $("#noteList").children("br").remove();
-    $('#notePad').attr('readonly', false); 
-    $('#notePad').addClass('input-enabled'); 
 }
 
+function formOpen(form) {
+    $("#sidebar").width(0);
+    $(form).fadeIn();
+    $('#notePad').attr('readonly', true); 
+    $('#notePad').addClass('input-disabled'); 
+    $(form).fadeIn();
+}
 
-
-
+function formClose(form) {
+    $(form).fadeOut();
+    $('#notePad').attr('readonly', false); 
+    $('#notePad').removeClass('input-disabled'); 
+}
