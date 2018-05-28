@@ -11,10 +11,11 @@ $("#closeSidebar").click(function() {
 $("#noteMarkup").click(function() {
     $("#editText").hide();
     var text = $("#notePad").val();  
-    var converter = new showdown.Converter();
+    var converter = new showdown.Converter({extensions: ['prettify'] });
     $("#markdownText").html(converter.makeHtml(text));
     $("#markdownText").show();
     $("#noteMarkup").hide();
+    $("#editBtns").hide();
     $("#noteEditor").show();
 });
 
@@ -23,6 +24,7 @@ $("#noteEditor").click(function() {
     $("#editText").show();
     $("#noteEditor").hide();
     $("#noteMarkup").show();
+    $("#editBtns").show();
     $("#markdownText").hide();
     $("#markdownText").html("");
 });
