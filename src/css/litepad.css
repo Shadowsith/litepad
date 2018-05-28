@@ -178,6 +178,10 @@ input[type="text"]#title {
     font-size: 20px;
 }
 
+.edit-btn {
+    font-size: 18px;
+}
+
 #editBtns {
     border-radius: 0 !important;
 }

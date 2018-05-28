@@ -11,7 +11,7 @@ $("#closeSidebar").click(function() {
 $("#noteMarkup").click(function() {
     $("#editText").hide();
     var text = $("#notePad").val();  
-    var converter = new showdown.Converter({extensions: ['prettify'] });
+    var converter = new showdown.Converter();
     $("#markdownText").html(converter.makeHtml(text));
     $("#markdownText").show();
     $("#noteMarkup").hide();
@@ -48,8 +48,18 @@ $("#noteSettings").click(function() {
     formOpen($("#noteSettingsForm"));
 });
 
-$("#noteSettingsCloseBtn").click(function () {
+$("#noteSettingsCloseBtn").click(function() {
     formClose($("#noteSettingsForm")); 
+});
+
+// text editor buttons
+
+$("#editBold").click(function() {
+    var note = $("#notePad").val();
+    var text = $("#notePad").select().val();
+    var bText = "**" + bText + "**";
+    note.replace(text, bText);
+    $("#notePad").val(note);
 });
 
 // ajax ------------------------------------------
