@@ -180,6 +180,7 @@ input[type="text"]#title {
 
 .edit-btn {
     font-size: 18px;
+    width: 40px;
 }
 
 #editBtns {

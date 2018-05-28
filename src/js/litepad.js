@@ -1,3 +1,5 @@
+var cache = [];
+
 // sidebar handling
 $("#openSidebar").click(function() {
     $("#sidebar").width(250);
@@ -55,12 +57,18 @@ $("#noteSettingsCloseBtn").click(function() {
 // text editor buttons
 
 $("#editBold").click(function() {
-    var note = $("#notePad").val();
-    var text = $("#notePad").select().val();
-    var bText = "**" + bText + "**";
-    note.replace(text, bText);
-    $("#notePad").val(note);
+    var bText = $("#notePad").selection('get');
+    bText = '**' + bText + '**';
+    $("#notePad").selection('replace', {text: bText});
 });
+
+$("#editItalic").click(function() {
+    var iText = $("#notePad").selection('get');
+    iText = '*' + iText + '*';
+    $("#notePad").selection('replace', {text: iText});
+});
+
+
 
 // ajax ------------------------------------------
 var path = 'src/php/ajax.php';
