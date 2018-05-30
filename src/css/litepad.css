@@ -1,14 +1,4 @@
 
-header {
-    background-color: #8A2BE2;
-    color: black;
-    font-size: 20px; 
-    padding-left: 5px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    display: block; 
-}
-
 .sidenav {
     height: 100%;
     width: 0;
@@ -52,23 +42,36 @@ header {
     display: none;
 }
 
-#openSidebar {
+#sidebarNavBtn {
+    display: none;
+}
+
+#sidebarBtn {
+}
+
+#titleNav {
+    padding-left: 5px;
+    width: 250px !important;
+    background-color: #fff;
+    overflow-x: auto;
 }
 
 #title {
-    position: absolute; 
-    left: 60px;
-    top: 8px; 
-    width: 250px;
-    height: 38px; 
-    font-size: 25px;
-    padding-left: 5px;
-    background-color: #fff;
+}
+
+#desktopBtns {
+    position: relative;
+    height: 38px;
+    border-radius: 0 !important;
 }
 
 input[type="text"]#title {
     font-size: 25px;
     width: 250px;
+}
+
+#noteEditorBtn {
+    display: none;
 }
 
 #editText {
@@ -187,8 +190,22 @@ input[type="text"]#title {
     border-radius: 0 !important;
 }
 
+#notePad {
+    margin-left: 40px;
+    float: left;
+    border-radius: 0 !important;
+}
+
 textarea {
     font-size: 10px;
+    resize: none;
+}
+
+textarea[data-name="linenumbers"] {
+    font-size: 16px;
+    border-radius: 0 !important;
+    color: #fff;
+    background-color: #8A2BE2; 
 }
 
 footer {
@@ -197,8 +214,15 @@ footer {
     text-align: center;
 }
 
-
 /* bootstrap changes */
+
+.navbar {
+    padding-left: 5px !important; 
+}
+
+.bg-light {
+    background-color: #8A2BE2 !important;
+}
 
 .btn-primary {
     border-color: black; 
@@ -228,4 +252,7 @@ footer {
     border-radius: 0 !important;
 }
 
+.btn-dark {
+    border-radius: 0 !important;
+}
 

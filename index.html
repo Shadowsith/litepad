@@ -9,29 +9,53 @@
         <link rel="stylesheet" type"text/css" href="./lib/material/material-icons.css">
         <link rel="stylesheet" type"text/css" href="./lib/jquery-announce/jquery.announce.css">
         <script type="text/javascript" src="./lib/jquery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-        <script type="text/javascript" src="./lib/showdown/dist/showdown.min.js"></script>
         <script type="text/javascript" src="./lib/jquery.selection/src/jquery.selection.js"></script>
         <script type="text/javascript" src="./lib/jquery-announce/jquery.announce.min.js"></script>
+        <script type="text/javascript" src="./lib/jquery.caret/jquery.caret.js"></script>
+        <script type="text/javascript" src="./lib/jquery-linenumbers/jquery-linenumbers.min.js"></script>
         <!--###################-->
 
         <link rel="stylesheet" type="text/css" href="src/css/litepad.css">
     </head>
     <body>
+
         <header>
-            <div id="sidebar" class="sidenav">
-                <button id="closeSidebar" type="button" class="btn btn-light closebtn material-icons">close</button>
-                <a id="noteAdd" href="#new">New</a>
-                <a id="noteOpen" href="#open">Open</a>
-                <a id="noteSave" href="#save">Save</a>
-                <a id="noteMarkup" href="#markup">Show Markup</a>
-                <a id="noteEditor" href="#editor">Show Editor</a>
-                <a id="notePrint" href="#print">Print</a>
-                <a id="noteDelete" href="#delete">Delete</a>
-                <a id="noteSettings" href="#settings">Settings</a>
-            </div>
-            <button id="openSidebar" class="btn btn-dark material-icons">view_list</button>
-            <span id="title" class="border border-dark">Title</span>
+            <nav class="navbar navbar-expand navbar-light bg-light">
+                <div id="sidebar" class="sidenav">
+                    <button id="closeSidebar" type="button" class="btn btn-light closebtn material-icons">close</button>
+                    <a id="noteAdd" href="#new">New</a>
+                    <a id="noteOpen" href="#open">Open</a>
+                    <a id="noteSave" href="#save">Save</a>
+                    <a id="noteMarkup" href="#markup">Show Markup</a>
+                    <a id="noteEditor" href="#editor">Show Editor</a>
+                    <a id="notePrint" href="#print">Print</a>
+                    <a id="noteDelete" href="#delete">Delete</a>
+                    <a id="noteSettings" href="#settings">Settings</a>
+                </div>
+
+                <ul id="innerNav" class="navbar-nav">
+                    <li id="sidebarNavBtn" class="nav-item">
+                        <button id="sidebarBtn" class="btn btn-dark material-icons">view_list</button>
+                    </li>
+                    <li id="titleNav" class="nav-item">
+                        <span id="title" class="navbar-brand mb-0 h1">Navbar</span>
+                    </li>
+                    <li class="nav-item">
+                        <div id="desktopBtns" class="btn-group">
+                            <button id="noteAddBtn" class="btn btn-dark material-icons">note_add</button>
+                            <button id="noteOpenBtn" class="btn btn-dark material-icons">folder_open</button>
+                            <button id="noteSaveBtn" class="btn btn-dark material-icons">save</button>
+                            <button id="noteMarkdownBtn" class="btn btn-dark material-icons">slideshow</button>
+                            <button id="noteEditorBtn" class="btn btn-dark material-icons">edit</button>
+                            <button id="notePrintBtn" class="btn btn-dark material-icons">print</button>
+                            <button id="noteDeleteBtn" class="btn btn-dark material-icons">delete</button>
+                            <button id="noteSettingsBtn" class="btn btn-dark material-icons">settings</button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <div id="noteAddForm" class="border border-dark note-form">
@@ -57,7 +81,7 @@
             <button id="noteDeleteCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
         </div>
 
-        <div id="editBtns" class="btn-group btn-group-toggle " data-toggle="buttons">
+        <div id="editBtns" class="btn-group btn-group-toggle" data-toggle="buttons">
             <button id="editUndo" class="btn btn-secondary material-icons border border-dark edit-btn">
                 undo
             </button>
@@ -73,7 +97,7 @@
             <button id="editUline" class="btn btn-secondary material-icons border border-dark edit-btn">
                 format_underlined
             </button>
-            <button id="editUline" class="btn btn-secondary material-icons border border-dark edit-btn">
+            <button id="editStrike" class="btn btn-secondary material-icons border border-dark edit-btn">
                 format_strikethrought
             </button>
             <button id="editUList" class="btn btn-secondary material-icons border border-dark edit-btn">
