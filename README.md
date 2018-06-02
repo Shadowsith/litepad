@@ -1,5 +1,5 @@
-# litepad
-A lite web based notepad for webspaces and server
+# lpad
+A lightweight webbased texteditor and notepad
 
 ---
 <img src="./img/litepad.png" alt="Example" height="500" width="auto">
@@ -7,22 +7,23 @@ A lite web based notepad for webspaces and server
 ---
 
 ## Requirements
-This application requires only php installed on your webspace or server.<br>
-Bootstrap and the jQuery Framework are included by default.
+lpad requires only **PHP** installed on your webserver.<br>
+Bootstrap, jQuery and all other libraries are included by default. See below for more information.
 
 ## Features
 This application is under active development and needs some time for the first release version
 
 ### Impmented
-* Mobile device support by default
-* Create/open notes
+* Mobile and Desktop support
+* Create/save/open notes
 * Markdown support and viewer
+* Switches dynamically between desktop buttons and app menu if browser window is to small
+* lines for texteditor
 
 ### Upcoming features
 * Printing the markdown layout
 * Security features 
 * simple php configuration file
-* markdown helper (Buttons for bold text etc.) 
 * notifications if files have saved/load/print successful
 
 ### In later versions
@@ -32,4 +33,11 @@ This application is under active development and needs some time for the first r
 
 
 ## Where will my notes be saved?
-The notes will be saved as simple textfiles under litepad/notes
+The notes will be saved as simple textfiles under lpad/notes
+
+## Used libraries
+* [Bootstrap 4.1](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+* [jQuery 3.3.1](https://jquery.com/)
+* [Google Material Icons](https://material.io/tools/icons/)
+* [jquery-announce](https://github.com/claviska/jquery-announce.git)
+* [jquery.selection](http://madapaja.github.io/jquery.selection/)
