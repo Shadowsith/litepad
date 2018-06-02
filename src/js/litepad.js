@@ -3,20 +3,16 @@ var isMobile = mobileOrDesktop();
 var rtime;
 var timeout = false;
 var delta = 200;
+var editor;
 
 
 $(document).ready(function (){
-    var width = $(window).width();
-    width = width-40; 
-    $('#notePad').linenumbers();
-    $('#notePad').css("float", "left");
-    $('#notePad').css("width", width + "px");
-    var notePadNumbers = $('textarea[data-name="linenumbers"]');
-    notePadNumbers.addClass("form-control border border-dark");
-    notePadNumbers.css("padding-left","2.5px");
-    notePadNumbers.css("padding-right","0px");
-    notePadNumbers.css("width","40px");
-    notePadNumbers.css("background-color", "#8A2BE2");
+    editor = ace.edit("notePad");
+    editor.setOptions({
+      fontSize: "12pt"
+    });
+    editor.resize();
+    editor.session.setMode("ace/mode/markdown");
     if (isMobile) {
         $("#sidebarNavBtn").show();
         $("#desktopBtns").hide();
@@ -32,7 +28,6 @@ $(window).resize(function() {
             setTimeout(resizeend, delta);
         }
     }
-    $('#notePad').css("width", width-40 + "px");
 });
 
 // sidebar handling
@@ -95,11 +90,14 @@ $("#noteSettingsBtn").click(function() {
 
 // text editor buttons
 $("#editBold").click(function() {
-    textFormat($("#notePad"),"**", 2);
+    textFormat(editor,"**", 2);
+    //alert(editor.getValue());
 });
 
 $("#editItalic").click(function() {
-    textFormat($("#notePad"),"*", 1);
+    //textFormat($("#notePad"),"*", 1);
+    alert(editor.getSelectedText());
+    editor.setValue("bla");
 });
 
 $("#editUline").click(function() {
@@ -270,23 +268,26 @@ function formClose(form) {
 }
 
 function textFormat(textarea, format, curserPos) {
-    var text = textarea.selection('get');
+    var text = textarea.getSelectedText();
     if (text != "" && format.substr(0,1) != "<") {
         text = format + text + format;
-        textarea.selection('replace', {text: text});
+        textarea.setSelectedText(text);
     }
     else if (text != "" && format.substr(0,1) == "<") {
         text = format + text + format.substr(0,1) + "/" + format.substr(1,format.length);
-        textarea.selection('replace', {text: text});
+        textarea.setSelectedText(text);
     } else {
-        text = textarea.val();
-        var pos = textarea.caret();
+        /*
+        text = textarea.getValue();
+        var row = editor.session.getLength();
+        //var pos = textarea.caret();
         if (format.substr(0,1) != "<") {
-            textarea.val(text.substr(0,pos) + format + format + text.substr(pos));
+            textarea.setValue(text.substr(0,pos) + format + format + text.substr(pos));
         } else {
-            textarea.val(text.substr(0,pos) + format + format.substr(0,1) + "/" + format.substr(1,format.length) + text.substr(pos));
+            textarea.setValue(text.substr(0,pos) + format + format.substr(0,1) + "/" + format.substr(1,format.length) + text.substr(pos));
         }
-        textarea.caret(pos+curserPos);
+        //textarea.caret(pos+curserPos);
+        */
     }
 }
 
