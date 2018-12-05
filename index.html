@@ -23,6 +23,7 @@
 
         <header>
             <nav class="navbar navbar-expand navbar-light bg-light">
+              <div class="container">
                 <div id="sidebar" class="sidenav">
                     <button id="closeSidebar" type="button" class="btn btn-light closebtn material-icons">close</button>
                     <a id="noteAdd" href="#new">New</a>
@@ -39,47 +40,44 @@
                     <li id="sidebarNavBtn" class="nav-item">
                         <button id="sidebarBtn" class="btn btn-dark material-icons">view_list</button>
                     </li>
-                    <li id="titleNav" class="nav-item">
-                        <span id="title" class="navbar-brand mb-0 h1">Navbar</span>
-                    </li>
                     <li class="nav-item">
                         <div id="desktopBtns" class="btn-group">
-                            <button id="noteAddBtn" class="btn btn-dark material-icons">note_add</button>
-                            <button id="noteOpenBtn" class="btn btn-dark material-icons">folder_open</button>
-                            <button id="noteSaveBtn" class="btn btn-dark material-icons">save</button>
-                            <button id="noteMarkdownBtn" class="btn btn-dark material-icons">slideshow</button>
-                            <button id="noteEditorBtn" class="btn btn-dark material-icons">edit</button>
-                            <button id="notePrintBtn" class="btn btn-dark material-icons">print</button>
-                            <button id="noteDeleteBtn" class="btn btn-dark material-icons">delete</button>
-                            <button id="noteSettingsBtn" class="btn btn-dark material-icons">settings</button>
+                            <button id="noteAddBtn" class="btn btn-dark material-icons"
+                              data-toggle="modal" data-target="#noteAddForm">
+                              note_add
+                            </button>
+                            <button id="noteOpenBtn" class="btn btn-dark material-icons"
+                              data-toggle="modal" data-target="#noteOpenForm">
+                              folder_open
+                            </button>
+                            <button id="noteSaveBtn" class="btn btn-dark material-icons">
+                              save
+                            </button>
+                            <button id="noteMarkdownBtn" class="btn btn-dark material-icons">
+                              slideshow
+                            </button>
+                            <button id="noteEditorBtn" class="btn btn-dark material-icons">
+                              edit
+                            </button>
+                            <button id="notePrintBtn" class="btn btn-dark material-icons">
+                              print
+                            </button>
+                            <button id="noteDeleteBtn" class="btn btn-dark material-icons">
+                              delete
+                            </button>
+                            <button id="noteSettingsBtn" class="btn btn-dark material-icons">
+                              settings
+                            </button>
                         </div>
                     </li>
                 </ul>
+              </div>
             </nav>
         </header>
+        
+        <div class="container">
 
-        <div id="noteAddForm" class="border border-dark note-form">
-            <span id="noteAddTitle" class="note-form-title">Add a file:</span>
-            <input id="noteAddInput" type="text" class="form-control">
-            <button id="noteAddCreateBtn" class="btn btn-primary">Add</button>
-            <button id="noteAddCloseBtn" class="btn btn-primary">Cancel</button>
-        </div>
 
-        <div id="noteList" class="border border-dark note-form">
-            <span id="noteListTitle" class="note-form-title">Open a file:</span>
-            <!--<h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>-->
-            <button id="noteListCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
-        </div>
-
-        <div id="noteSettingsForm" class="border border-dark note-form">
-            <span id="noteSettingsTitle" class="note-form-title">Settings:</span> 
-            <button id="noteSettingsCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
-        </div>
-
-        <div id="noteDeleteForm" class="border border-dark note-form">
-            <span id="noteDeleteTitle" class="note-form-title">Delete:</span>
-            <button id="noteDeleteCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
-        </div>
 
         <div id="editBtns" class="btn-group btn-group-toggle" data-toggle="buttons">
             <button id="editUndo" class="btn btn-secondary material-icons border border-dark edit-btn">
@@ -116,8 +114,33 @@
         </div>
 
         <footer>
-            <a href="https://github.com/Shadowsith/litepad">Fork me on GitHub!</a>
+            <a href="https://github.com/Shadowsith/lpad">Fork me on GitHub!</a>
         </footer>
+
+        </div>
+
+        <div id="noteAddForm" class="">
+            <span id="noteAddTitle" class="note-form-title">Add a file:</span>
+            <input id="noteAddInput" type="text" class="form-control">
+            <button id="noteAddCreateBtn" class="btn btn-primary">Add</button>
+            <button id="noteAddCloseBtn" class="btn btn-primary">Cancel</button>
+        </div>
+
+        <div id="noteOpenForm" class="">
+            <span id="noteListTitle" class="note-form-title">Open a file:</span>
+            <!--<h3><span id="noteListBadge" class="badge badge-primary">Choose a file:</span></h3>-->
+            <button id="noteListCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
+        </div>
+
+        <div id="noteSettingsForm" class="">
+            <span id="noteSettingsTitle" class="note-form-title">Settings:</span> 
+            <button id="noteSettingsCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
+        </div>
+
+        <div id="noteDeleteForm" class="">
+            <span id="noteDeleteTitle" class="note-form-title">Delete:</span>
+            <button id="noteDeleteCloseBtn" class="btn btn-primary note-form-btn material-icons">close</button>
+        </div>
 
         <script src="./src/js/litepad.js"></script>
     </body>
