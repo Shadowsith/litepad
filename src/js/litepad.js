@@ -72,25 +72,13 @@ class Sidebar {
 
 class Editor {
     constructor() {
-        this.ace = "#editor";
-        this.btns = "#btnGrpEdit";
-        this.btnUndo = "#btnUndo";
-        this.btnRedo = "#btnRedo";
-        this.btnBold = "#btnBold";
-        this.btnItalic = "#btnItalic";
-        this.btnUline = "#btnUline";
-        this.btnStrike = "#btnStrike";
-        this.btnUlist = "#btnUlist";
-        this.btnOlist = "#btnOlist";
-
-        //this.createEditor();
+        this.elem = "#editor";
+        this.mde = this.createEditor();
     }
 
     createEditor() {
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
-        editor.session.setMode("ace/mode/javascript");
-        editor.getSession().setValue('bla abc');
+        var simpleMde = new SimpleMDE({element: $(this.elem)[0]});
+        return simpleMde;
     }
 
     registerEditorHandler() {
