@@ -9,13 +9,23 @@ class LitepadUI {
         this.editor = new Editor();
         this.sidebar = new Sidebar();
         this.converter = new showdown.Converter();
+        this.ajax = new AjaxHandler();
         this.file = "#file";
         this.btnSave = "#btnSave";
         this.btnParse = "#btnParse";
         this.btnEdit = "#btnEdit";
         this.content = "#content";
         this.parsedCtnt = "#parsed";
-        this.ajax = "php/ajax.php";
+    }
+
+    addNote() {
+        if($(this.modals.inAdd).val() == "") {
+            $.announce.warning("Please enter a name for your new note");
+            return;
+        }
+        this.ajax.add($(this.modals.inAdd).val()); 
+        $(this.file).html($(this.modals.inAdd).val());
+        $(this.modals.inAdd).val("");
     }
 
     saveNote() {
@@ -23,26 +33,7 @@ class LitepadUI {
             $.announce.danger("The filename is empty");
             return;
         }
-
-        $.ajax({    
-            url: this.ajax,
-            type: "POST",
-            data: { 
-                "notePostName": $(this.file).html(), 
-                "noteSave": "1", 
-                "noteText": this.editor.mde.value()
-            },
-            dataType: "text",
-            success: function(response) {
-                if (response != "\n") {
-                    $.announce.success(response);
-                }
-            },
-            error: function(xhr, status, error) {
-                $.announce.danger(error);
-            }
-        });
-
+        this.ajax.write($(this.file).html(), this.editor.mde.value());
     }
 
     parseMarkdown() {
@@ -74,6 +65,10 @@ class LitepadUI {
         $(this.btnEdit).click(function() {
             self.showEditor();
         })
+
+        $(this.modals.btnAdd).click(function() {
+            self.addNote();
+        });
     }
 }
 
@@ -93,16 +88,6 @@ class ModalHandler {
         this.btnSettigns = "#btnModalSettings";
     }
 
-    addNote() {
-        if($(this.inAdd).val() != "") {
-
-
-            $(this.inAdd).val("");
-        } else {
-            $.announce.warning("Please enter a name for your new note");
-        }
-    }
-
     deleteNote() {
 
     }
@@ -110,9 +95,6 @@ class ModalHandler {
     registerModalHandler() {
         var self = this;
 
-        $(this.btnAdd).click(function() {
-            self.addNote();
-        });
     }
 }
 
@@ -133,5 +115,53 @@ class Editor {
 
     registerEditorHandler() {
 
+    }
+}
+
+
+class AjaxHandler {
+    constructor() {
+        this.backend = "php/ajax.php";
+    }
+
+    add(name) {
+        $.ajax({    
+            url: this.backend,
+            type: "POST",
+            data: { 
+                "notePostName": name, 
+                "noteAdd": "1"
+            },
+            dataType: "text",
+            success: function(response) {
+                if (response != "\n") {
+                    $.announce.success(response);
+                }
+            },
+            error: function(xhr, status, error) {
+                $.announce.danger(error);
+            }
+        });
+    }
+
+    write(name, text) {
+        $.ajax({    
+            url: this.backend,
+            type: "POST",
+            data: { 
+                "notePostName": name, 
+                "noteSave": "1", 
+                "noteText": text
+            },
+            dataType: "text",
+            success: function(response) {
+                if (response != "\n") {
+                    $.announce.success(response);
+                }
+            },
+            error: function(xhr, status, error) {
+                $.announce.danger(error);
+            }
+        });
     }
 }

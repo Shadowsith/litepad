@@ -1,5 +1,5 @@
 <?php
-include('../config.php'); 
+require('./config.php'); 
 
 class NoteIO 
 {
@@ -30,6 +30,17 @@ class NoteIO
         $this->noteName = $name; 
     }
 
+    public function createNote() {
+        $fileNums = $this->countNotes();
+        if ($fileNums < 200) {
+            $note = fopen($this->path, "w");
+            fclose($note); 
+            print("New empty file has been created");
+        } else {
+            print($this->errorMsg);
+        }   
+    }
+
     public function writeNote($text)
     {
         if (!empty($text) || !isset($text)) {
@@ -40,11 +51,11 @@ class NoteIO
                     print($this->fileNotReadMsg);
                 }
                 fclose($note); 
+                print("File has been saved!");
             } else {
                 print($this->errorMsg);
             }   
         }
-        print("File has been saved!");
     }
 
     public function readNote()
@@ -62,14 +73,22 @@ class NoteIO
         } 
     }
 
-    public function renameNote($name) 
+    public function moveNote($newName) 
     {
-
+        if(file_exists($this->path)) {
+            $newPath = self::NOTEFOLDER . $newName . ".txt"; 
+            if(rename($this->path, $newPath)) {
+                print("File " . $this->$noteName . " has been successful moved to " . $newName);
+            } else {
+               print("File " . $this->$noteName . " couldn't moved");
+            }
+        } else {
+            print("File does not exit!");
+        }
     }
 
     public function deleteNote() 
     {
-        print("test");
         if(file_exists($this->path)) {
             unlink($this->path); 
             print($this->deleteMsg); 
@@ -86,7 +105,7 @@ class NoteIO
         } 
         $string = "";
         foreach($notes as $value) {
-            $string = $string . '<a href="#" class="noteLoad">' . $value . '</a><br>' . ";";  
+            $string = $string . '<li><a href="#" class="noteLoad">' . $value . '</a></li>';  
         }
         $string = substr($string, 0, strlen($string)-1);
         $rpos = strrpos($string, ";"); 
