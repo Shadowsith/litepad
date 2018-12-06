@@ -10,13 +10,14 @@
     <link rel="stylesheet" type"text/css" href="lib/simpleMDE/simplemde.min.css">
 
     <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="lib/marked/marked.min.js"></script>
+    <!--<script type="text/javascript" src="lib/marked/marked.min.js"></script>-->
 
     <script type="text/javascript" src="lib/jquery.selection/src/jquery.selection.js"></script>
     <script type="text/javascript" src="lib/jquery-announce/jquery.announce.min.js"></script>
     <script type="text/javascript" src="lib/jquery.caret/jquery.caret.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/simpleMDE/simplemde.min.js"></script>
+    <script type="text/javascript" src="lib/showdown/showdown.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/litepad.css">
 
@@ -27,7 +28,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #810541;">
         <div class="container">
           <a class="navbar-brand" href="#" data-toggle="modal" data-target="#modalMove">
-            <u>Filename</u>
+            <u id="file">Filename</u>
           </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -45,10 +46,10 @@
                 <button id="btnSave" class="btn material-icons">save</button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons">slideshow</button>
+                <button id="btnParse" class="btn material-icons">slideshow</button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal">edit</button>
+                <button id="btnEdit" class="btn material-icons" data-toggle="modal">edit</button>
               </li>
               <li class="nav-item">
                 <button class="btn material-icons" data-toggle="modal" data-target="#modalDelete">
@@ -71,6 +72,10 @@
 
     <div id="content" class="container">
         <textarea id="editor"></textarea>
+    </div>
+
+    <div id="parsed" class="container mt-2">
+
     </div>
 
     <!--modal area -->

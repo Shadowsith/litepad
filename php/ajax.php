@@ -6,6 +6,7 @@ $notePostName = $_POST['notePostName'];
 $noteText =     $_POST['noteText'];
 $noteSave =     $_POST['noteSave'];
 $noteDelete =   $_POST['noteDelete']; 
+$noteMove =     $_POST['noteMove'];
 
 $noteGetName =  $_GET['noteGetName']; 
 $noteOpen =     $_GET['noteOpen'];
@@ -14,17 +15,19 @@ $notePrint =    $_GET['notePrint'];
 
 $note;
 
-if (isset($notePostName)) {
+if(isset($notePostName)) {
     $note = new NoteIO($notePostName); 
 }
 
-if (isset($noteGetName)) {
+if(isset($noteGetName)) {
     $note = new NoteIO($noteGetName); 
 }
 
-if (isset($note) && isset($noteSave) && isset($noteText)) {
+if(isset($note) && isset($noteSave) && isset($noteText)) {
     $note->writeNote($noteText); 
 }
+
+if(isset($note) && isset($noteMove))
 
 if(isset($note) && isset($noteOpen)) {
     $note->listNotes(); 

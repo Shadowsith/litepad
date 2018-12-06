@@ -1,9 +1,9 @@
 <?php
-include('../../config.php'); 
+include('../config.php'); 
 
 class NoteIO 
 {
-    private const NOTEFOLDER = "../../notes/";  
+    private const NOTEFOLDER = "../notes/";  
 
     private $errorMsg = "The maximum value of files in notes folder is reached";
     private $fileNotReadMsg = "File could not be saved, internal server error!"; 
@@ -44,6 +44,7 @@ class NoteIO
                 print($this->errorMsg);
             }   
         }
+        print("File has been saved!");
     }
 
     public function readNote()

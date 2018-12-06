@@ -8,12 +8,54 @@ class LitepadUI {
         this.modals = new ModalHandler();
         this.editor = new Editor();
         this.sidebar = new Sidebar();
+        this.converter = new showdown.Converter();
+        this.file = "#file";
         this.btnSave = "#btnSave";
+        this.btnParse = "#btnParse";
+        this.btnEdit = "#btnEdit";
+        this.content = "#content";
+        this.parsedCtnt = "#parsed";
         this.ajax = "php/ajax.php";
     }
 
     saveNote() {
-        alert("hi");
+        if($(this.file).html() == "") {
+            $.announce.danger("The filename is empty");
+            return;
+        }
+
+        $.ajax({    
+            url: this.ajax,
+            type: "POST",
+            data: { 
+                "notePostName": $(this.file).html(), 
+                "noteSave": "1", 
+                "noteText": this.editor.mde.value()
+            },
+            dataType: "text",
+            success: function(response) {
+                if (response != "\n") {
+                    $.announce.success(response);
+                }
+            },
+            error: function(xhr, status, error) {
+                $.announce.danger(error);
+            }
+        });
+
+    }
+
+    parseMarkdown() {
+        var text = this.editor.mde.value();
+        var html = this.converter.makeHtml(text);
+        $(this.parsedCtnt).html(html);
+        $(this.content).hide();
+        $(this.parsedCtnt).show();
+    }
+
+    showEditor() {
+        $(this.content).show();
+        $(this.parsedCtnt).hide();
     }
 
     registerHandler() {
@@ -24,6 +66,14 @@ class LitepadUI {
         $(this.btnSave).click(function() {
             self.saveNote();
         });
+
+        $(this.btnParse).click(function() {
+            self.parseMarkdown();
+        })
+
+        $(this.btnEdit).click(function() {
+            self.showEditor();
+        })
     }
 }
 
