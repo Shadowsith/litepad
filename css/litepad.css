@@ -45,4 +45,10 @@
     border-radius: 0 !important;
 }
 
+.editor-toolbar {
+    background-color: lightgoldenrodyellow
+}
 
+.editor-toolbar.fullscreen {
+    background-color: lightgoldenrodyellow
+}
