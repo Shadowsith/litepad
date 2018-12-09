@@ -105,7 +105,7 @@ class NoteIO
         } 
         $string = "";
         foreach($notes as $value) {
-            $string = $string . '<li><a href="#" class="noteLoad">' . $value . '</a></li>';  
+            $string = $string . '<li><a href="#" class="noteOpen">' . $value . '</a></li>';  
         }
         $string = substr($string, 0, strlen($string)-1);
         $rpos = strrpos($string, ";"); 

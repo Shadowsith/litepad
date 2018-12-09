@@ -3,6 +3,7 @@ $(document).ready(function() {
     ui.registerHandler();
 });
 
+// global handler 
 class LitepadUI {
     constructor() {
         this.modals = new ModalHandler();
@@ -16,16 +17,6 @@ class LitepadUI {
         this.btnEdit = "#btnEdit";
         this.content = "#content";
         this.parsedCtnt = "#parsed";
-    }
-
-    addNote() {
-        if($(this.modals.inAdd).val() == "") {
-            $.announce.warning("Please enter a name for your new note");
-            return;
-        }
-        this.ajax.add($(this.modals.inAdd).val()); 
-        $(this.file).html($(this.modals.inAdd).val());
-        $(this.modals.inAdd).val("");
     }
 
     saveNote() {
@@ -65,15 +56,13 @@ class LitepadUI {
         $(this.btnEdit).click(function() {
             self.showEditor();
         })
-
-        $(this.modals.btnAdd).click(function() {
-            self.addNote();
-        });
     }
 }
 
 class ModalHandler {
     constructor() {
+        this.ajax = new AjaxHandler();
+        this.file = "#file";
         this.mAdd = "#modalAdd";
         this.mOpen = "#modalOpen";
         this.mMove = "#modalMove";
@@ -84,16 +73,55 @@ class ModalHandler {
         this.btnAdd = "#btnModalAdd";
         //this.anchorOpen = $(".");
         this.ulOpen = "#ulNoteOpen";
+        this.liOpen = ".noteOpen";
         this.btnDelete = "#btnModalDelete";
         this.btnSettigns = "#btnModalSettings";
     }
 
-    deleteNote() {
+    addNote() {
+        if($(this.inAdd).val() == "") {
+            $.announce.warning("Please enter a name for your new note");
+            return;
+        }
+        this.ajax.add($(this.inAdd).val()); 
+        $(this.file).html($(this.inAdd).val());
+        $(this.inAdd).val("");
+    }
 
+    listNotes() {
+        alert("hi");
+    }
+
+    openNote() {
+        alert("hi");
+    }
+
+    deleteNote() {
+        var file = $(this.file).html();
+        this.ajax.remove(file);
+        $.announce.success("File " + file + " deleted!");
+        $(this.file).html("");
     }
 
     registerModalHandler() {
         var self = this;
+
+        $(this.btnAdd).click(function() {
+            self.addNote();
+        });
+
+        $(this.btnDelete).click(function() {
+            self.deleteNote();
+        });
+
+        //$(this.mOpen).bind('isVisible', self.listNotes);
+        $(this.mOpen).on('show.bs.modal', function() {
+            self.listNotes();
+        });
+
+        $(this.liOpen).click(function() {
+            self.openNote();
+        });
 
     }
 }
@@ -144,6 +172,30 @@ class AjaxHandler {
         });
     }
 
+    read(name) {
+
+    }
+
+    remove(name) {
+        $.ajax({    
+            url: this.backend,
+            type: "POST",
+            data: { 
+                "notePostName": name, 
+                "noteDelete": "1"
+            },
+            dataType: "text",
+            success: function(response) {
+                if (response != "\n") {
+                    $.announce.success(response);
+                }
+            },
+            error: function(xhr, status, error) {
+                $.announce.danger(error);
+            }
+        });
+    }
+
     write(name, text) {
         $.ajax({    
             url: this.backend,
@@ -164,4 +216,5 @@ class AjaxHandler {
             }
         });
     }
+
 }
