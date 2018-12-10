@@ -3,6 +3,12 @@ $(document).ready(function() {
     ui.registerHandler();
 });
 
+class SharedUi {
+    constructor() {
+        this.file = "#file";
+    }
+}
+
 // global handler 
 class LitepadUI {
     constructor() {
@@ -11,12 +17,13 @@ class LitepadUI {
         this.sidebar = new Sidebar();
         this.converter = new showdown.Converter();
         this.ajax = new AjaxHandler();
-        this.file = "#file";
+        this.file = new SharedUi().file;
         this.btnSave = "#btnSave";
         this.btnParse = "#btnParse";
         this.btnEdit = "#btnEdit";
         this.content = "#content";
         this.parsedCtnt = "#parsed";
+        this.liOpen = ".noteList";
     }
 
     saveNote() {
@@ -24,7 +31,25 @@ class LitepadUI {
             $.announce.danger("The filename is empty");
             return;
         }
-        this.ajax.write($(this.file).html(), this.editor.mde.value());
+
+        var data = {
+            notePostName: $(this.file).html(),
+            noteSave: "1", 
+            noteText: this.editor.mde.value()
+        };
+
+        this.ajax.post("text", data, this.editor.mde.value());
+    }
+
+    openNote(file) {
+        var data = {
+            noteGetName: file,
+            noteLoad: "1"
+        };
+
+        this.ajax.get("text", data, "File couldn't be opened!")
+            .then((data) => this.editor.mde.value(data));
+        $(this.file).html(file);
     }
 
     parseMarkdown() {
@@ -51,18 +76,22 @@ class LitepadUI {
 
         $(this.btnParse).click(function() {
             self.parseMarkdown();
-        })
+        });
 
         $(this.btnEdit).click(function() {
             self.showEditor();
-        })
+        });
+
+        $(this.modals.mOpen).on("click", this.liOpen, function() {
+            self.openNote($(this).html());
+        });
     }
 }
 
 class ModalHandler {
     constructor() {
         this.ajax = new AjaxHandler();
-        this.file = "#file";
+        this.file = new SharedUi().file;
         this.mAdd = "#modalAdd";
         this.mOpen = "#modalOpen";
         this.mMove = "#modalMove";
@@ -71,11 +100,10 @@ class ModalHandler {
 
         this.inAdd = "#inModalAdd";
         this.btnAdd = "#btnModalAdd";
-        //this.anchorOpen = $(".");
         this.ulOpen = "#ulNoteOpen";
-        this.liOpen = ".noteOpen";
         this.btnDelete = "#btnModalDelete";
         this.btnSettigns = "#btnModalSettings";
+        this.liOpen = ".noteList";
     }
 
     addNote() {
@@ -83,22 +111,39 @@ class ModalHandler {
             $.announce.warning("Please enter a name for your new note");
             return;
         }
-        this.ajax.add($(this.inAdd).val()); 
+
+        var data = {
+            notePostName: $(this.inAdd).val(), 
+            noteAdd: "1"
+        }
+
+        this.ajax.post("text", data, "File couldn't add!"); 
         $(this.file).html($(this.inAdd).val());
         $(this.inAdd).val("");
     }
 
-    listNotes() {
-        alert("hi");
+    loadNotes() {
+        var data = {
+            noteGetName: "1",
+            noteOpen: "1"
+        };
+        this.ajax.get("html", data, "File list couldn't load!")
+            .then((data) => this.listNotes(data));
     }
 
-    openNote() {
-        alert("hi");
+    listNotes(data) {
+        $(this.ulOpen).html(data);
     }
 
     deleteNote() {
         var file = $(this.file).html();
-        this.ajax.remove(file);
+
+        var data = { 
+            notePostName: file, 
+            noteDelete: "1"
+        };
+
+        this.ajax.post("text", data, "File couldn't deleted");
         $.announce.success("File " + file + " deleted!");
         $(this.file).html("");
     }
@@ -116,13 +161,8 @@ class ModalHandler {
 
         //$(this.mOpen).bind('isVisible', self.listNotes);
         $(this.mOpen).on('show.bs.modal', function() {
-            self.listNotes();
+            self.loadNotes();
         });
-
-        $(this.liOpen).click(function() {
-            self.openNote();
-        });
-
     }
 }
 
@@ -151,70 +191,43 @@ class AjaxHandler {
     constructor() {
         this.backend = "php/ajax.php";
     }
+    
+    async get(_dataType, _data, error_msg) {
 
-    add(name) {
+        const result = await $.ajax({    
+            url: this.backend,
+            type: "GET",
+            dataType: _dataType,
+            data: _data,
+            error: function(xhr, status, error) {
+                if(error != "") {
+                    $.announce.danger(error);
+                } else {
+                    $.announce.danger(error_msg);
+                }
+            }
+        });
+        return result;
+    }
+
+    post(_dataType, _data, error_msg) {
         $.ajax({    
             url: this.backend,
             type: "POST",
-            data: { 
-                "notePostName": name, 
-                "noteAdd": "1"
-            },
-            dataType: "text",
+            dataType: _dataType,
+            data: _data,
             success: function(response) {
                 if (response != "\n") {
                     $.announce.success(response);
                 }
             },
             error: function(xhr, status, error) {
-                $.announce.danger(error);
-            }
-        });
-    }
-
-    read(name) {
-
-    }
-
-    remove(name) {
-        $.ajax({    
-            url: this.backend,
-            type: "POST",
-            data: { 
-                "notePostName": name, 
-                "noteDelete": "1"
-            },
-            dataType: "text",
-            success: function(response) {
-                if (response != "\n") {
-                    $.announce.success(response);
+                if(error != "") {
+                    $.announce.danger(error);
+                } else {
+                    $.announce.danger(error_msg);
                 }
-            },
-            error: function(xhr, status, error) {
-                $.announce.danger(error);
             }
         });
     }
-
-    write(name, text) {
-        $.ajax({    
-            url: this.backend,
-            type: "POST",
-            data: { 
-                "notePostName": name, 
-                "noteSave": "1", 
-                "noteText": text
-            },
-            dataType: "text",
-            success: function(response) {
-                if (response != "\n") {
-                    $.announce.success(response);
-                }
-            },
-            error: function(xhr, status, error) {
-                $.announce.danger(error);
-            }
-        });
-    }
-
 }

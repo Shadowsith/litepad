@@ -1,5 +1,5 @@
 <?php
-require('./config.php'); 
+require('config.php'); 
 
 class NoteIO 
 {
@@ -99,18 +99,14 @@ class NoteIO
 
     public function listNotes() 
     {
-        $notes = preg_grep('/^([^.])/', scandir(self::NOTEFOLDER)); 
-        foreach($notes as &$value) {
-            $value = substr($value, 0, -4); 
-        } 
-        $string = "";
-        foreach($notes as $value) {
-            $string = $string . '<li><a href="#" class="noteOpen">' . $value . '</a></li>';  
+        $array = scandir(self::NOTEFOLDER); 
+        $notes = array_slice($array, 2);
+        $res = "";
+        foreach($notes as $note) {
+            $note = substr($note, 0, -4); // cut off .txt
+            $res = $res . '<li><h5><a class="noteList" href="#">' . $note . "</a></h5></li>";
         }
-        $string = substr($string, 0, strlen($string)-1);
-        $rpos = strrpos($string, ";"); 
-        $string = substr($string, 0, $rpos); 
-        print($string); 
+        print($res); 
     }
 }
 
