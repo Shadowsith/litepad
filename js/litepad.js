@@ -69,6 +69,7 @@ class LitepadUI {
         var self = this;
         this.modals.registerModalHandler();
         this.editor.registerEditorHandler();
+        this.sidebar.registerSidebarHandler();
 
         $(this.btnSave).click(function() {
             self.saveNote();
@@ -167,6 +168,31 @@ class ModalHandler {
 }
 
 class Sidebar {
+    constructor() {
+        this.nav_open = "#sidebar_open";
+        this.nav_close = "#sidebar_close";
+        this.nav = "#sidebar";
+    }
+
+    open() {
+        $(this.nav).width(250);
+    }
+
+    close() {
+        $(this.nav).width(0);
+    }
+
+    registerSidebarHandler() {
+        var self = this;
+
+        $(this.nav_open).click(function() {
+            self.open();
+        });
+
+        $(this.nav_close).click(function() {
+            self.close();
+        });
+    }
 
 }
 
@@ -182,7 +208,6 @@ class Editor {
     }
 
     registerEditorHandler() {
-
     }
 }
 

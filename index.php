@@ -26,10 +26,23 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #810541;">
+        <button id="sidebar_open" class="btn material-icons">view_list</button> 
         <div class="container">
           <a class="navbar-brand" href="#" data-toggle="modal" data-target="#modalMove">
             <u id="file">Filename</u>
           </a>
+          <div id="sidebar" class="sidenav">
+            <button id="sidebar_close" type="button" class="btn btn-light closebtn material-icons">close</button>
+            <a id="s_add" href="#">New</a>
+            <a id="s_open" href="#">Open</a>
+            <a id="s_save" href="#">Save</a>
+            <a id="s_parse" href="#">Parse Markdown</a>
+            <a id="s_editor" href="#">Show Editor</a>
+            <a id="s_print" href="#">Print</a>
+            <a id="s_delete" href="#">Delete</a>
+            <a id="s_settings" href="#">Settings</a>
+          </div>
+
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
