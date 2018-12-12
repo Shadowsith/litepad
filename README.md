@@ -2,7 +2,7 @@
 A lightweight webbased notepad with mardown support
 
 ---
-<img src="./img/litepad.png" alt="Example" height="500" width="auto">
+<img src="https://shadowsith.de/samples/lpad.png" alt="Example" height="400" width="auto">
 
 ---
 
