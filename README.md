@@ -1,5 +1,5 @@
 # lpad
-A lightweight webbased texteditor and notepad
+A lightweight webbased notepad with mardown support
 
 ---
 <img src="./img/litepad.png" alt="Example" height="500" width="auto">
@@ -14,26 +14,30 @@ Bootstrap, jQuery and all other libraries are included by default. See below for
 This application is under active development and needs some time for the first release version
 
 ### Impmented
-* Mobile and Desktop support
+* Mobile and desktop support
 * Create/save/open notes
 * Markdown support and viewer
 * Switches dynamically between desktop buttons and app menu if browser window is to small
-* lines for texteditor
+* split screen editor for non mobile devices (texteditor and markdown view side by side)
 
-### Upcoming features
-* Printing the markdown layout
+### Todo
+* login
+* Printing and preview the markdown layout
+* Save note as pdf
 * Security features 
 * simple php configuration file
 * notifications if files have saved/load/print successful
 
 ### In later versions
 * encrypt your textfiles by default (asks for decryption-key if you will open it)
-* split screen editor for non mobile devices (texteditor and markdown view side by side)
 * change UI colors/colorschemes
-
+* version with SQLite implementation
 
 ## Where will my notes be saved?
-The notes will be saved as simple textfiles under lpad/notes
+* The notes will be saved as simple textfiles under lpad/notes
+
+## Demo
+https://lpad.shadowsith.de
 
 ## Used libraries
 * [Bootstrap 4.1](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
@@ -41,3 +45,5 @@ The notes will be saved as simple textfiles under lpad/notes
 * [Google Material Icons](https://material.io/tools/icons/)
 * [jquery-announce](https://github.com/claviska/jquery-announce.git)
 * [jquery.selection](http://madapaja.github.io/jquery.selection/)
+* [Showdownjs](https://github.com/showdownjs/showdown)
+* [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
