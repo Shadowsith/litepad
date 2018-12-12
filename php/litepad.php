@@ -80,7 +80,7 @@ class NoteIO
             if(rename($this->path, $newPath)) {
                 print("File " . $this->$noteName . " has been successful moved to " . $newName);
             } else {
-               print("File " . $this->$noteName . " couldn't moved");
+               print("File " . $this->$noteName . " couldn't renamed");
             }
         } else {
             print("File does not exit!");

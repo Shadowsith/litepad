@@ -33,14 +33,16 @@
           </a>
           <div id="sidebar" class="sidenav">
             <button id="sidebar_close" type="button" class="btn btn-light closebtn material-icons">close</button>
-            <a id="s_add" href="#">New</a>
-            <a id="s_open" href="#">Open</a>
-            <a id="s_save" href="#">Save</a>
-            <a id="s_parse" href="#">Parse Markdown</a>
-            <a id="s_editor" href="#">Show Editor</a>
-            <a id="s_print" href="#">Print</a>
-            <a id="s_delete" href="#">Delete</a>
-            <a id="s_settings" href="#">Settings</a>
+            <a id="s_add" class="s_link" href="#modalAdd" data-toggle="modal">New</a>
+            <a id="s_rename" class="s_link" href="#modalMove" data-toggle="modal">Rename</a>
+            <a id="s_open" class="s_link" href="#modalOpen" data-toggle="modal">Open</a>
+            <a id="s_save" class="s_link" href="#">Save</a>
+            <a id="s_parse" class="s_link" href="#">Parse Markdown</a>
+            <a id="s_editor" class="s_link" href="#">Show Editor</a>
+            <a id="s_print" class="s_link" href="#">Print</a>
+            <a id="s_delete" class="s_link" href="#modalDelete" data-toggle="modal">Delete</a>
+            <a id="s_settings" class="s_link" href="#modalSettings" data-toggle="modal">Settings</a>
+            <a id="s_info" class="s_link" href="#modalInfo" data-toggle="modal">Information</a>
           </div>
 
           <div class="collapse navbar-collapse" id="nav_collapse">
@@ -75,6 +77,11 @@
               <li class="nav-item">
                 <button class="btn material-icons" data-toggle="modal" data-target="#modalSettings">
                   settings
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalInfo">
+                  info 
                 </button>
               </li>
            </ul>
@@ -132,7 +139,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="btnModalAdd" type="button" class="btn btn-warning">Move note</button>
+            <button id="btnModalRename" type="button" class="btn btn-warning">Move note</button>
           </div>
         </div>
       </div>
@@ -198,6 +205,49 @@
         </div>
       </div>
     </div> 
+
+    <div id="modalInfo" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-sm">
+              <tbody>
+                <tr>
+                  <td>Developer</td>
+                  <td>Philip Mayer</td>
+                </tr>
+                <tr>
+                  <td>Contact</td>
+                  <td>philip.mayer@shadowsith.de</td>
+                </tr>
+                <tr>
+                  <td>Year</td>
+                  <td>2018-2019</td>
+                </tr>
+                <tr>
+                  <td>License</td>
+                  <td><a href="https://opensource.org/licenses/MIT">MIT</a></td>
+                </tr>
+                <tr>
+                  <td>Source Code</td>
+                  <td><a href="https://github.com/Shadowsith/lpad">GitHub</a></td>
+                </tr>
+              </tbody> 
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
 
     <!--modal end -->
     <footer class="fixed-bottom">

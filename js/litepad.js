@@ -59,6 +59,7 @@ class LitepadUI {
         this.ajax.get("text", data, "File couldn't be opened!")
             .then((data) => this.editor.mde.value(data));
         $(this.file).html(file);
+        $(this.modals.mOpen).modal('hide');
     }
 
     parseMarkdown() {
@@ -127,6 +128,18 @@ class LitepadUI {
         $(this.modals.mOpen).on("click", this.liOpen, function() {
             self.openNote($(this).html());
         });
+
+        $(this.sidebar.btnSave).click(function() {
+            self.saveNote();
+        });
+
+        $(this.sidebar.btnParse).click(function() {
+            self.parseMarkdown();
+        });
+
+        $(this.sidebar.btnEdit).click(function() {
+            self.showEditor();
+        });
     }
 }
 
@@ -142,6 +155,8 @@ class ModalHandler {
 
         this.inAdd = "#inModalAdd";
         this.btnAdd = "#btnModalAdd";
+        this.inRename = "#inModalRename";
+        this.btnRename = "#btnModalRename";
         this.ulOpen = "#ulNoteOpen";
         this.btnDelete = "#btnModalDelete";
         this.btnSettigns = "#btnModalSettings";
@@ -164,6 +179,10 @@ class ModalHandler {
         $(this.inAdd).val("");
     }
 
+    listNotes(data) {
+        $(this.ulOpen).html(data);
+    }
+
     loadNotes() {
         var data = {
             noteGetName: "1",
@@ -172,9 +191,22 @@ class ModalHandler {
         this.ajax.get("html", data, "File list couldn't load!")
             .then((data) => this.listNotes(data));
     }
+    
+    moveNote() {
+        if($(this.inRename).val() == "") {
+            $.announce.warning("Please enter a valid name for your new note");
+            return;
+        }
 
-    listNotes(data) {
-        $(this.ulOpen).html(data);
+        var data = {
+            notePostName: $(this.file).html(),
+            noteMove: $(this.inRename).val()
+        };
+
+        this.ajax.post("text", data, "File couldn't renamed!");
+
+        $(this.file).html($(this.inRename).val());
+        $(this.inRename).val("");
     }
 
     deleteNote() {
@@ -197,6 +229,10 @@ class ModalHandler {
             self.addNote();
         });
 
+        $(this.btnRename).click(function() {
+            self.moveNote();
+        })
+
         $(this.btnDelete).click(function() {
             self.deleteNote();
         });
@@ -213,6 +249,10 @@ class Sidebar {
         this.nav_open = "#sidebar_open";
         this.nav_close = "#sidebar_close";
         this.nav = "#sidebar";
+        this.links = ".s_link";
+        this.btnSave = "#s_save";
+        this.btnParse = "#s_parse";
+        this.btnEdit = "#s_editor";
     }
 
     open() {
@@ -233,8 +273,11 @@ class Sidebar {
         $(this.nav_close).click(function() {
             self.close();
         });
-    }
 
+        $(this.links).click(function() {
+            self.close();
+        });
+    }
 }
 
 class Editor {
