@@ -26,8 +26,8 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #810541;">
-        <button id="sidebar_open" class="btn material-icons">view_list</button> 
-        <div class="container">
+        <div id="nav_container" class="container">
+          <button id="sidebar_open" class="btn material-icons">view_list</button> 
           <a class="navbar-brand" href="#" data-toggle="modal" data-target="#modalMove">
             <u id="file">Filename</u>
           </a>
@@ -43,7 +43,7 @@
             <a id="s_settings" href="#">Settings</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="collapse navbar-collapse" id="nav_collapse">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <button class="btn material-icons" data-toggle="modal" data-target="#modalAdd">
@@ -200,9 +200,8 @@
     </div> 
 
     <!--modal end -->
-
     <footer class="fixed-bottom">
-      <div class="d-flex justify-content-center">
+      <div id="fork" class="d-flex justify-content-center">
         <a href="https://github.com/Shadowsith/lpad">Fork me on GitHub!</a>
       </div>
     </footer>

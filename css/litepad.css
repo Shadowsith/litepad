@@ -2,6 +2,10 @@
     font-size: 14pt;
 }
 
+#sidebar_open {
+    display: none;
+}
+
 .sidenav {
     height: 100%;
     width: 0;

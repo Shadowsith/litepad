@@ -1,6 +1,10 @@
 $(document).ready(function() {
     var ui = new LitepadUI();
     ui.registerHandler();
+    ui.onLoad();
+    $(window).resize(function() {
+        ui.resize();
+    });
 });
 
 class SharedUi {
@@ -18,12 +22,17 @@ class LitepadUI {
         this.converter = new showdown.Converter();
         this.ajax = new AjaxHandler();
         this.file = new SharedUi().file;
+        this.nav = "#nav_collapse";
+        this.conNav = "#nav_container";
+        this.btnApp = "#sidebar_open";
         this.btnSave = "#btnSave";
         this.btnParse = "#btnParse";
         this.btnEdit = "#btnEdit";
         this.content = "#content";
         this.parsedCtnt = "#parsed";
         this.liOpen = ".noteList";
+        this.fork = "#fork";
+        this.mlFile = "ml-3";
     }
 
     saveNote() {
@@ -58,6 +67,38 @@ class LitepadUI {
         $(this.parsedCtnt).html(html);
         $(this.content).hide();
         $(this.parsedCtnt).show();
+    }
+
+    onLoad() {
+        if($(this.nav).is(":hidden")) {
+            this.hideContent();
+        }
+    }
+
+    hideContent() {
+        $(this.btnApp).show();
+        $(this.conNav).removeClass("container");
+        $(this.file).addClass(this.mlFile);
+        $(this.content).removeClass("container")
+        $(this.content).addClass("container-fluid");
+        $(this.fork).removeClass("d-flex").hide();
+    }
+    
+    resize() {
+        if($(this.nav).is(":hidden")) {
+            if($(this.btnApp).is(":hidden")) {
+                this.hideContent();
+            }
+        } else {
+            if($(this.btnApp).is(":visible")) {
+                $(this.btnApp).hide();
+                $(this.fork).addClass("d-flex").show();
+                $(this.conNav).addClass("container");
+                $(this.file).removeClass(this.mlFile);
+                $(this.content).removeClass("container-fluid")
+                $(this.content).addClass("container");
+            }
+        }
     }
 
     showEditor() {
