@@ -28,6 +28,7 @@ class LitepadUI {
         this.btnSave = "#btnSave";
         this.btnParse = "#btnParse";
         this.btnEdit = "#btnEdit";
+        this.btnPrint = "#btnPrint";
         this.content = "#content";
         this.parsedCtnt = "#parsed";
         this.liOpen = ".noteList";
@@ -42,7 +43,7 @@ class LitepadUI {
         }
 
         var data = {
-            notePostName: $(this.file).html(),
+            noteName: $(this.file).html(),
             noteSave: "1", 
             noteText: this.editor.mde.value()
         };
@@ -52,7 +53,7 @@ class LitepadUI {
 
     openNote(file) {
         var data = {
-            noteGetName: file,
+            noteName: file,
             noteLoad: "1"
         };
 
@@ -68,6 +69,19 @@ class LitepadUI {
         $(this.parsedCtnt).html(html);
         $(this.content).hide();
         $(this.parsedCtnt).show();
+    }
+
+    parseToPdf() {
+        var text = this.editor.mde.value();
+        var html = this.converter.makeHtml(text);
+
+        var data = {
+            noteName: $(this.file).html(),
+            notePrint: "1",
+            noteText: html
+        };
+
+        this.ajax.post("html", data, "File couldn't parsed to pdf print", "pdf");
     }
 
     onLoad() {
@@ -112,7 +126,11 @@ class LitepadUI {
         this.modals.registerModalHandler();
         this.editor.registerEditorHandler();
         this.sidebar.registerSidebarHandler();
+        this.registerOnClick(self);
 
+    }
+
+    registerOnClick(self) {
         $(this.btnSave).click(function() {
             self.saveNote();
         });
@@ -140,6 +158,11 @@ class LitepadUI {
         $(this.sidebar.btnEdit).click(function() {
             self.showEditor();
         });
+        
+        $(this.btnPrint).click(function() {
+            self.parseToPdf();
+        });
+
     }
 }
 
@@ -170,7 +193,7 @@ class ModalHandler {
         }
 
         var data = {
-            notePostName: $(this.inAdd).val(), 
+            noteName: $(this.inAdd).val(), 
             noteAdd: "1"
         }
 
@@ -185,7 +208,7 @@ class ModalHandler {
 
     loadNotes() {
         var data = {
-            noteGetName: "1",
+            noteName: "1",
             noteOpen: "1"
         };
         this.ajax.get("html", data, "File list couldn't load!")
@@ -199,7 +222,7 @@ class ModalHandler {
         }
 
         var data = {
-            notePostName: $(this.file).html(),
+            noteName: $(this.file).html(),
             noteMove: $(this.inRename).val()
         };
 
@@ -213,7 +236,7 @@ class ModalHandler {
         var file = $(this.file).html();
 
         var data = { 
-            notePostName: file, 
+            noteName: file, 
             noteDelete: "1"
         };
 
@@ -287,7 +310,12 @@ class Editor {
     }
 
     createEditor() {
-        var simpleMde = new SimpleMDE({element: $(this.elem)[0]});
+        var simpleMde = new SimpleMDE({
+            element: $(this.elem)[0],
+            autofocus: true,
+            spellChecker: false,
+            initialValue: "Welcome to Lpad!",
+        });
         return simpleMde;
     }
 
@@ -319,7 +347,7 @@ class AjaxHandler {
         return result;
     }
 
-    post(_dataType, _data, error_msg) {
+    post(_dataType, _data, error_msg, handleRes = "") {
         $.ajax({    
             url: this.backend,
             type: "POST",
@@ -327,7 +355,13 @@ class AjaxHandler {
             data: _data,
             success: function(response) {
                 if (response != "\n") {
-                    $.announce.success(response);
+                    if(handleRes == "") {
+                        $.announce.success(response);
+                    }
+                    else if(handleRes == "pdf") {
+                        $.announce.success(response);
+                        window.open('pdf/print.pdf', '_blank', 'fullscreen=yes');
+                    }
                 }
             },
             error: function(xhr, status, error) {

@@ -1,9 +1,14 @@
 <?php
 require('config.php'); 
+require('vendor/autoload.php');
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class NoteIO 
 {
     private const NOTEFOLDER = "../notes/";  
+    private const PDFFOLDER = "../pdf/";
 
     private $errorMsg = "The maximum value of files in notes folder is reached";
     private $fileNotReadMsg = "File could not be saved, internal server error!"; 
@@ -107,6 +112,23 @@ class NoteIO
             $res = $res . '<li><h5><a class="noteList" href="#">' . $note . "</a></h5></li>";
         }
         print($res); 
+    }
+
+    public function printNote($html) 
+    {
+        $options = new Options();
+        $options->set('defaultFont', 'DejaVu Sans');
+        $dompdf = new Dompdf($options);
+        $dompdf->set_protocol(WWW_ROOT);
+        $dompdf->set_base_path('../');
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+        $output = $dompdf->output();
+        file_put_contents(self::PDFFOLDER . 'print.pdf', $output);
+        print("File has saved as pdf");
     }
 }
 

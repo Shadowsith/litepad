@@ -47,3 +47,8 @@ https://lpad.shadowsith.de
 * [jquery.selection](http://madapaja.github.io/jquery.selection/)
 * [Showdownjs](https://github.com/showdownjs/showdown)
 * [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
+
+## Third party requirements
+I recommend to use the install_third_party.sh
+* [Dompdf](https://github.com/dompdf/dompdf)
+

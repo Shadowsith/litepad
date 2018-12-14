@@ -1,4 +1,7 @@
 tags
 tags*
 *.txt
+*.pdf
 index.html
+php/composer.*
+php/vendor/*

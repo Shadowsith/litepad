@@ -43,7 +43,7 @@
             <a id="s_save" class="s_link" href="#">Save</a>
             <a id="s_parse" class="s_link" href="#">Parse Markdown</a>
             <a id="s_editor" class="s_link" href="#">Show Editor</a>
-            <a id="s_print" class="s_link" href="#">Print</a>
+            <a id="s_print" class="s_link" href="#">Print (PDF)</a>
             <a id="s_delete" class="s_link" href="#modalDelete" data-toggle="modal">Delete</a>
             <a id="s_settings" class="s_link" href="#modalSettings" data-toggle="modal">Settings</a>
             <a id="s_info" class="s_link" href="#modalInfo" data-toggle="modal">Information</a>
@@ -52,39 +52,45 @@
           <div class="collapse navbar-collapse" id="nav_collapse">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal" data-target="#modalAdd">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalAdd"
+                  title="adds a note">
                   note_add
                 </button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal" data-target="#modalOpen">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalOpen"
+                  title="opens a note from note list">
                   folder_open
                 </button>
                 </li>
               <li class="nav-item">
-                <button id="btnSave" class="btn material-icons">save</button>
+                <button id="btnSave" class="btn material-icons" title="saves note">save</button>
               </li>
               <li class="nav-item">
-                <button id="btnParse" class="btn material-icons">slideshow</button>
+                <button id="btnParse" class="btn material-icons" title="parse note">slideshow</button>
               </li>
               <li class="nav-item">
-                <button id="btnEdit" class="btn material-icons" data-toggle="modal">edit</button>
+                <button id="btnEdit" class="btn material-icons" data-toggle="modal"
+                  title="shows editor">edit</button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal" data-target="#modalDelete">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalDelete"
+                  title="deletes open note">
                   delete
                 </button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons">print</button>
+                <button id="btnPrint" class="btn material-icons" title="shows pdf print preview">print</button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal" data-target="#modalSettings">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalSettings"
+                  title="shows settings">
                   settings
                 </button>
               </li>
               <li class="nav-item">
-                <button class="btn material-icons" data-toggle="modal" data-target="#modalInfo">
+                <button class="btn material-icons" data-toggle="modal" data-target="#modalInfo"
+                  title="shows application info">
                   info 
                 </button>
               </li>
