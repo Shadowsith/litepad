@@ -58,7 +58,8 @@ class LitepadUI {
         };
 
         this.ajax.get("text", data, "File couldn't be opened!")
-            .then((data) => this.editor.mde.value(data));
+            // substr prevent to load an not needed '\n' char at begin
+            .then((data) => this.editor.mde.value(data.substr(1,data.length-1)));
         $(this.file).html(file);
         $(this.modals.mOpen).modal('hide');
     }
@@ -163,6 +164,9 @@ class LitepadUI {
             self.parseToPdf();
         });
 
+        $(this.sidebar.btnPrint).click(function() {
+            self.parseToPdf();
+        });
     }
 }
 
@@ -276,6 +280,7 @@ class Sidebar {
         this.btnSave = "#s_save";
         this.btnParse = "#s_parse";
         this.btnEdit = "#s_editor";
+        this.btnPrint = "#s_print";
     }
 
     open() {

@@ -33,7 +33,7 @@
         <div id="nav_container" class="container">
           <button id="sidebar_open" class="btn material-icons">view_list</button> 
           <a class="navbar-brand" href="#" data-toggle="modal" data-target="#modalMove">
-            <u id="file">Filename</u>
+            <u id="file" title="click to rename note/file">Filename</u>
           </a>
           <div id="sidebar" class="sidenav">
             <button id="sidebar_close" type="button" class="btn btn-light closebtn material-icons">close</button>
@@ -207,6 +207,46 @@
             </button>
           </div>
           <div class="modal-body">
+            <table class="table table-sm">
+              <tbody>
+                <tr>
+                  <td title="Enables cookies for users if they have accepted than before">
+                    Enable Cookies:
+                  </td>
+                  <td>
+                    <div class="checkbox">
+                      <input id="cbCookies"type="checkbox" value="">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td title="max value are 200 notes">
+                    Max. number of notes:
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input id="inNumOfNotes" type="number" class="form-control">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Pdf Print Font: 
+                  </td> 
+                  <td>
+                    <div class="form-group">
+                      <select id="selPdfFont" class="form-control">
+                        <option>Courier</option>
+                        <option>DejaVu Sans</option>
+                        <option>Helvetica</option>
+                        <option>Times</option>
+                        <option>ZapfDingbats</option>
+                      </select>
+                    </div> 
+                  </td>
+                </tr>
+              </tbody> 
+            </table> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
