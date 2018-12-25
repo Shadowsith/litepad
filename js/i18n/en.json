@@ -1,0 +1,66 @@
+{
+    "sidebar": {
+        "add": "Add",
+        "rename": "Rename",
+        "open": "Open",
+        "save": "Save",
+        "parse": "Parse",
+        "editor": "Editor",
+        "print": "Print",
+        "delete": "Delete",
+        "settings": "Settings",
+        "info": "Info"
+    },
+
+    "btn": {
+        "rename": "click to rename current note",
+        "add": "adds a note",
+        "open": "opens a note from note list",
+        "save": "saves note",
+        "parse": "parse note",
+        "edit": "shows editor",
+        "delete": "deletes current note",
+        "print": "print current note to pdf",
+        "settings": "opens settings",
+        "info": "opens info"
+    },
+
+    "modals": {
+        "btn": {
+            "add": "Add",
+            "close":"Close",
+            "delete":"Delete",
+            "rename": "Rename"
+        },
+
+        "desc": {
+            "add": "Name:",
+            "delete": "Do you want to delete the open note?",
+            "open": "Select a note:",
+            "rename": "Rename file:"
+        },
+
+        "info": {
+            "contact": "Contact",
+            "dev": "Developer",
+            "license": "License",
+            "source": "Source code",
+            "year": "Year"
+        },
+
+        "headline": {
+            "add": "Add note",
+            "info": "Information",
+            "open": "Open note",
+            "rename": "Rename note",
+            "settings": "Settings"
+        },
+
+        "settings": {
+            "cookies": "Enable cookies",
+            "notes": "Max num. of notes",
+            "pdfprint": "PDF print font",
+            "lang": "Language"
+        }
+    }
+}

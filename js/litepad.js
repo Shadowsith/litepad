@@ -328,7 +328,6 @@ class Editor {
     }
 }
 
-
 class AjaxHandler {
     constructor() {
         this.backend = "php/ajax.php";

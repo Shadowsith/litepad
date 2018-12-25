@@ -49,6 +49,22 @@
     border-radius: 0 !important;
 }
 
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-item {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.list-content {
+    width: 100%;
+    /*background-color: #ccc;*/
+    padding: 5px;
+}
+
 .editor-toolbar {
     background-color: lightgoldenrodyellow
 }
