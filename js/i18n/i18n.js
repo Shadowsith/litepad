@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var i18n = new I18n("en");
+    var i18n = new I18n("de");
 });
 
 class I18n {
@@ -33,21 +33,34 @@ class I18n {
         this.btnInfo = "#btnInfo";
 
         // modals title 
-        this.lblModalAdd = "#lblAdd";
-        this.lblModalSave = "#lblSave";
-        this.lblModalRename = "#lblRename";
-        this.lblModalDelete = "#lblDelete";
-        this.lblModalSettings = "#lblSettings";
-        this.lblModalInfo = "#lblInfo";
+        this.h5ModalAdd = "#h5ModalAdd";
+        this.h5ModalOpen = "#h5ModalOpen";
+        this.h5ModalRename = "#h5ModalRename";
+        this.h5ModalDelete = "#h5ModalDelete";
+        this.h5ModalSettings = "#h5ModalSettings";
+        this.h5ModalInfo = "#h5ModalInfo";
 
         // modals lables
-
+        this.lblModalAdd = "#lblModalAdd";
+        this.lblModalRename = "#lblModalRename";
+        this.lblModalOpen = "#lblModalOpen";
+        this.lblModalDelete = "#lblModalDelete";
+        this.lblCookies = "#lblCookies";
+        this.lblMaxNotes = "#lblMaxNotes";
+        this.lblPdfPrint = "#lblPdfPrint";
+        this.lblLang = "#lblLang";
+        this.lblDeveloper = "#lblDeveloper";
+        this.lblContact = "#lblContact";
+        this.lblDevYear = "#lblDevYear";
+        this.lblLicense = "#lblLicense";
+        this.lblSourceCode = "#lblSourceCode";
 
         // modal btns
         this.btnModalClose = ".btnModalClose";
         this.btnModalAdd = "#btnModalAdd";
         this.btnModalRename = "#btnModalRename";
         this.btnModalDelete = "#btnModalDelete";
+        this.btnModalSave = "#btnModalSave";
     }
 
     select(lang) {
@@ -58,10 +71,13 @@ class I18n {
                 break;
 
             case "de":
-                this.getJSON(`js/i18n/${lang}.json`);
+                this.getJSON(`js/i18n/${lang}.json`)
+                    .then((data) => this.translate(data));
+                break;
 
             default:
-                this.getJSON(`js/i18n/en.json`);
+                this.getJSON(`js/i18n/en.json`)
+                    .then((data) => this.translate(data));
                 break;
         }
     }
@@ -77,10 +93,8 @@ class I18n {
     translate(data) {
         this.translateSidebar(data);
         this.translateMainBtnDesc(data);
-        // modals
-
-        // modal btns
-        $(this.btnModalClose).html(data.modals.btn.close);
+        this.translateModalTitle(data);
+        this.translateModalItems(data);
     }
 
     translateSidebar(data) {
@@ -97,6 +111,7 @@ class I18n {
     }
 
     translateMainBtnDesc(data) {
+        $(this.uFileName).html(data.nav.file);
         $(this.uFileName).attr('title', data.btn.rename);
         $(this.btnAdd).attr('title', data.btn.add);
         $(this.btnOpen).attr('title', data.btn.open);
@@ -110,13 +125,37 @@ class I18n {
     }
 
     translateModalTitle(data) {
-
+        $(this.h5ModalAdd).html(data.modals.headline.add);
+        $(this.h5ModalOpen).html(data.modals.headline.open);
+        $(this.h5ModalDelete).html(data.modals.headline.delete);
+        $(this.h5ModalInfo).html(data.modals.headline.info);
+        $(this.h5ModalRename).html(data.modals.headline.rename);
+        $(this.h5ModalSettings).html(data.modals.headline.settings);
     }
 
     translateModalItems(data) {
-        // 
+        // lables
+        $(this.lblModalAdd).html(data.modals.desc.add);
+        $(this.lblModalRename).html(data.modals.desc.rename);
+        $(this.lblModalOpen).html(data.modals.desc.open);
+        $(this.lblModalDelete).html(data.modals.desc.delete);
+
+        $(this.lblCookies).html(data.modals.settings.cookies);
+        $(this.lblMaxNotes).html(data.modals.settings.notes);
+        $(this.lblPdfPrint).html(data.modals.settings.pdfprint);
+        $(this.lblLang).html(data.modals.settings.lang);
+        $(this.lblDeveloper).html(data.modals.info.dev);
+        $(this.lblContact).html(data.modals.info.contact);
+        $(this.lblDevYear).html(data.modals.info.year);
+        $(this.lblLicense).html(data.modals.info.license);
+        $(this.lblSourceCode).html(data.modals.info.source);
 
         // buttons
+        $(this.btnModalClose).html(data.modals.btn.close);
+        $(this.btnModalAdd).html(data.modals.btn.add);
+        $(this.btnModalRename).html(data.modals.btn.rename);
+        $(this.btnModalDelete).html(data.modals.btn.delete);
+        $(this.btnModalSave).html(data.modals.btn.save);
     }
 
 }

@@ -1,0 +1,71 @@
+{
+    "sidebar": {
+        "add": "Hinzufügen",
+        "rename": "Umbenennen",
+        "open": "Öffnen",
+        "save": "Speichern",
+        "parse": "Formatieren",
+        "editor": "Editor",
+        "print": "Drucken",
+        "delete": "Löschen",
+        "settings": "Einstellungen",
+        "info": "Info"
+    },
+
+    "nav": {
+        "file": "Dateiname"  
+    },
+
+    "btn": {
+        "rename": "Hier klicken um Notiz umzubenennen",
+        "add": "Notiz öffnen",
+        "open": "Öffnet eine Notiz",
+        "save": "Notiz speichern",
+        "parse": "Notiz formatieren",
+        "edit": "Zurück zum Texteditor",
+        "delete": "Löscht offene Notiz",
+        "print": "Offene Notiz drucken",
+        "settings": "Einstellungen öffnen",
+        "info": "Informationen über Lpad"
+    },
+
+    "modals": {
+        "btn": {
+            "add": "Öffnen",
+            "close":"Schließen",
+            "delete":"Löschen",
+            "rename": "Umbenennen",
+            "save": "Speichern"
+        },
+
+        "desc": {
+            "add": "Name:",
+            "delete": "Wollen Sie die Notiz löschen?",
+            "open": "Wählen Sie eine Notiz:",
+            "rename": "Datei umbenennen:"
+        },
+
+        "info": {
+            "contact": "Kontakt",
+            "dev": "Entwickler",
+            "license": "Lizenz",
+            "source": "Quellcode",
+            "year": "Jahr"
+        },
+
+        "headline": {
+            "add": "Notiz hinzufügen",
+            "info": "Information",
+            "open": "Notiz öffnen",
+            "rename": "Notiz umbenennen",
+            "settings": "Einstellungen"
+        },
+
+        "settings": {
+            "cookies": "Cookies aktivieren",
+            "notes": "Max. Anzahl von Notizen",
+            "pdfprint": "PDF Druckschrift",
+            "lang": "Sprache"
+        }
+    }
+}

@@ -5,6 +5,27 @@ require('vendor/autoload.php');
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+// be careful if change enumerations
+// change also lpad.js ajax message handling
+abstract class MsgEnum 
+{
+    const Error = 0;
+
+        const Max_files = 0;
+        const File_not_found = 1;
+        const File_not_saved = 2;
+        const File_not_exist = 3;
+        const File_not_renamed = 4;
+
+    const Success = 1; 
+        
+        const File_saved = 0;
+        const File_deleted = 1;
+        const File_pdf = 2;
+        const File_renamed = 3;
+        const File_added = 4;
+}
+
 class NoteIO 
 {
     private const NOTEFOLDER = "../notes/";  

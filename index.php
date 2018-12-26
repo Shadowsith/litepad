@@ -122,7 +122,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="lblAdd" class="modal-title">Add note</h5>
+            <h5 id="h5ModalAdd" class="modal-title">Add note</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -147,14 +147,14 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="lblRename" class="modal-title">Rename note</h5>
+            <h5 id="h5ModalRename" class="modal-title">Rename note</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label for="inModalRename">Rename file:</label>
+              <label id="lblModalRename" for="inModalRename">Rename file:</label>
               <input id="inModalRename" type="text" class="form-control">
             </div>
           </div>
@@ -173,13 +173,13 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="lblOpen" class="modal-title">Open note</h5>
+            <h5 id="h5ModalOpen" class="modal-title">Open note</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Select a note:</p>
+            <label id="lblModalOpen">Select a note:</label>
             <ul id="ulNoteOpen">
             </ul>
           </div>
@@ -196,13 +196,13 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="lblDelete" class="modal-title">Delete note</h5>
+            <h5 id="h5ModalDelete" class="modal-title">Delete note</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Do you want to delete the open note?</p>
+            <label id="lblModalDelete">Do you want to delete the open note?</label>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btnModalClose" data-dismiss="modal">
@@ -218,7 +218,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="lblSettings" class="modal-title">Note settings</h5>
+            <h5 id="h5ModalSettings" class="modal-title">Note settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -296,7 +296,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Information</h5>
+            <h5 id="h5ModalInfo" class="modal-title">Information</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
