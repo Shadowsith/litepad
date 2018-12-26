@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<config>
+  <global>
+    <cookies>false</cookies>
+    <lang>EN</lang>
+    <ui>
+      <nav></nav>
+      <btn></btn>
+      <bg></bg>
+      <editor></editor>
+      <sidebar></sidebar>
+    </ui>
+  </global>
+  <notes>
+    <maxNum>200</maxNum>  
+    <pdfFont>Courier</pdfFont>
+    <editor>SimpleMDE</editor>
+  </notes>
+</config>
