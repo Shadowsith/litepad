@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="css/litepad.css">
 
     <script type="text/javascript" src="js/i18n/i18n.js"></script>
-    <script type="text/javascript" src="js/litepad.js"></script>
+    <script type="text/javascript" src="js/lpad.js"></script>
   </head>
   <body>
     <header>

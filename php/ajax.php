@@ -1,5 +1,5 @@
 <?php
-require("./litepad.php");
+require("./lpad.php");
 
 $noteName = "";
 if(isset($_POST['noteName'])) {
