@@ -7,7 +7,7 @@ $(document).ready(function() {
     });
 });
 
-class SharedUi {
+class Shared {
     constructor() {
         this.file = "#file";
     }
@@ -21,7 +21,7 @@ class LitepadUI {
         this.sidebar = new Sidebar();
         this.converter = new showdown.Converter();
         this.ajax = new AjaxHandler();
-        this.file = new SharedUi().file;
+        this.file = new Shared().file;
         this.nav = "#nav_collapse";
         this.conNav = "#nav_container";
         this.btnApp = "#sidebar_open";
@@ -173,7 +173,7 @@ class LitepadUI {
 class ModalHandler {
     constructor() {
         this.ajax = new AjaxHandler();
-        this.file = new SharedUi().file;
+        this.file = new Shared().file;
         this.mAdd = "#modalAdd";
         this.mOpen = "#modalOpen";
         this.mMove = "#modalMove";
@@ -331,6 +331,26 @@ class Editor {
 class AjaxHandler {
     constructor() {
         this.backend = "php/ajax.php";
+        this.MsgEnum = this.getMsgEnum();
+        Object.freeze(this.MsgEnum);
+    }
+
+    getMsgEnum() {
+        var enumeration = {
+            "Error":0,
+            "Max_files":0,
+            "File_not_found":1,
+            "File_not_saved":2,
+            "File_not_exist":3,
+            "File_not_renamed":4,
+            "Success":1, 
+            "File_saved":0,
+            "File_deleted":1,
+            "File_pdf":2,
+            "File_renamed":3,
+            "File_added":4,
+        }
+        return enumeration;
     }
     
     async get(_dataType, _data, error_msg) {
@@ -351,8 +371,8 @@ class AjaxHandler {
         return result;
     }
 
-    post(_dataType, _data, error_msg, handleRes = "") {
-        $.ajax({    
+    async post(_dataType, _data, error_msg, handleRes = "") {
+        const result = await $.ajax({    
             url: this.backend,
             type: "POST",
             dataType: _dataType,
@@ -376,5 +396,67 @@ class AjaxHandler {
                 }
             }
         });
+        return result;
+    }
+
+    receiveMsg(response) {
+        var MsgEnum = this.MsgEnum;
+        switch(response[0]) {
+            case MsgEnum.Error:
+                switch(response[1]) {
+                    case MsgEnum.Max_files:
+                        $.announce.danger("");
+                        break;
+
+                    case MsgEnum.File_not_found:
+                        $.announce.danger("");
+                        break;
+
+                    case MsgEnum.File_not_saved:
+                        $.announce.danger("");
+                        break;
+
+                    case MsgEnum.File_not_exist:
+                        $.announce.danger("");
+                        break;
+
+                    case MsgEnum.File_not_renamed:
+                        $.announce.danger("");
+                        break;
+
+                    default: break;
+
+                }
+                break;
+
+            case MsgEnum.Success:
+                switch(response[1]) {
+
+                    case MsgEnum.File_saved:
+                        $.announce.success("");
+                        break;
+
+                    case MsgEnum.File_deleted:
+                        $.announce.success("");
+                        break;
+
+                    case MsgEnum.File_pdf:
+                        $.announce.success("");
+                        break;
+
+                    case MsgEnum.File_renamed:
+                        $.announce.success("");
+                        break;
+
+                    case MsgEnum.File_added:
+                        $.announce.success("");
+                        break;
+
+                    default: break;
+                }
+                break;
+
+            default: break;
+        }
     }
 }

@@ -66,17 +66,17 @@ class I18n {
     select(lang) {
         switch(lang) {
             case "en":
-                this.getJSON(`js/i18n/${lang}.json`)
+                this.getJSON(`i18n/${lang}.json`)
                     .then((data) => this.translate(data));
                 break;
 
             case "de":
-                this.getJSON(`js/i18n/${lang}.json`)
+                this.getJSON(`i18n/${lang}.json`)
                     .then((data) => this.translate(data));
                 break;
 
             default:
-                this.getJSON(`js/i18n/en.json`)
+                this.getJSON(`i18n/en.json`)
                     .then((data) => this.translate(data));
                 break;
         }

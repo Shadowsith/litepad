@@ -10,20 +10,18 @@ use Dompdf\Options;
 abstract class MsgEnum 
 {
     const Error = 0;
-
-        const Max_files = 0;
-        const File_not_found = 1;
-        const File_not_saved = 2;
-        const File_not_exist = 3;
-        const File_not_renamed = 4;
+    const Max_files = 0;
+    const File_not_found = 1;
+    const File_not_saved = 2;
+    const File_not_exist = 3;
+    const File_not_renamed = 4;
 
     const Success = 1; 
-        
-        const File_saved = 0;
-        const File_deleted = 1;
-        const File_pdf = 2;
-        const File_renamed = 3;
-        const File_added = 4;
+    const File_saved = 0;
+    const File_deleted = 1;
+    const File_pdf = 2;
+    const File_renamed = 3;
+    const File_added = 4;
 }
 
 class NoteIO 
@@ -61,7 +59,8 @@ class NoteIO
         if ($fileNums < 200) {
             $note = fopen($this->path, "w");
             fclose($note); 
-            print("New empty file has been created");
+            //print("New empty file has been created");
+            print(MsgEnum::Success . MsgEnum::File_added);
         } else {
             print($this->errorMsg);
         }   
