@@ -23,9 +23,10 @@
     <script type="text/javascript" src="lib/simpleMDE/simplemde.min.js"></script>
     <script type="text/javascript" src="lib/showdown/showdown.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/litepad.css">
+    <link rel="stylesheet" type="text/css" href="css/lpad.css">
 
     <script type="text/javascript" src="js/i18n.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
     <script type="text/javascript" src="js/lpad.js"></script>
   </head>
   <body>

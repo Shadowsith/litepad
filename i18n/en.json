@@ -79,10 +79,9 @@
         },
 
         "error": {
-            "max_files_reaches": "The maximum value of files in notes folder is reached",
+            "max_files": "The maximum value of files in notes folder is reached",
             "file_not_found": "File could not be found!",
             "file_not_saved": "File could not be saved, internal server error!",
-            "file_not_exists": "This file does not exist!",
             "file_not_renamed": "File could not be renamed"
         }
     }

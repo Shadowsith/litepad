@@ -13,8 +13,8 @@ abstract class MsgEnum
     const Max_files = 0;
     const File_not_found = 1;
     const File_not_saved = 2;
-    const File_not_exist = 3;
-    const File_not_renamed = 4;
+    const File_not_renamed = 3;
+    const File_not_readable = 4;
 
     const Success = 1; 
     const File_saved = 0;
@@ -29,10 +29,6 @@ class NoteIO
     private const NOTEFOLDER = "../notes/";  
     private const PDFFOLDER = "../pdf/";
 
-    private $errorMsg = "The maximum value of files in notes folder is reached";
-    private $fileNotReadMsg = "File could not be saved, internal server error!"; 
-    private $deleteMsg = "File has been deleted!";
-    private $fileNotFoundMsg = "File could not be found!"; 
     private $noteName; 
     private $path; 
 
@@ -59,10 +55,9 @@ class NoteIO
         if ($fileNums < 200) {
             $note = fopen($this->path, "w");
             fclose($note); 
-            //print("New empty file has been created");
             print(MsgEnum::Success . MsgEnum::File_added);
         } else {
-            print($this->errorMsg);
+            print(MsgEnum::Error . MsgEnum::Max_files);
         }   
     }
 
@@ -73,12 +68,12 @@ class NoteIO
             if ($fileNums < 200) {
                 $note = fopen($this->path, "w");
                 if(!fwrite($note, $text)) {
-                    print($this->fileNotReadMsg);
+                    print(MsgEnum::Error . MsgEnum::File_not_readable);
                 }
                 fclose($note); 
-                print("File has been saved!");
+                print(MsgEnum::Success . MsgEnum::File_saved);
             } else {
-                print($this->errorMsg);
+                print(MsgEnum::Error . MsgEnum::Max_files);
             }   
         }
     }
@@ -94,7 +89,7 @@ class NoteIO
             fclose($note);  
             print($text); 
         } else {
-            print($this->fileNotFoundMsg); 
+            print(MsgEnum::Error . MsgEnum::File_not_found); 
         } 
     }
 
@@ -103,12 +98,12 @@ class NoteIO
         if(file_exists($this->path)) {
             $newPath = self::NOTEFOLDER . $newName . ".txt"; 
             if(rename($this->path, $newPath)) {
-                print("File " . $this->$noteName . " has been successful moved to " . $newName);
+                print(MsgEnum::Success . MsgEnum::File_renamed);
             } else {
-               print("File " . $this->$noteName . " couldn't renamed");
+               print(MsgEnum::Error . MsgEnum::File_not_renamed);
             }
         } else {
-            print("File does not exit!");
+            print(MsgEnum::Error . MsgEnum::File_not_found);
         }
     }
 
@@ -118,7 +113,7 @@ class NoteIO
             unlink($this->path); 
             print($this->deleteMsg); 
         } else {
-            print("This file does not exist!"); 
+            print(MsgEnum::Error . MsgEnum::File_not_found); 
         }
     }
 
@@ -148,7 +143,7 @@ class NoteIO
         $dompdf->render();
         $output = $dompdf->output();
         file_put_contents(self::PDFFOLDER . 'print.pdf', $output);
-        print("File has saved as pdf");
+        print(MsgEnum::Success . MsgEnum::File_pdf);
     }
 }
 

@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    var i18n = new I18n("de");
+    var i18n = new I18n();
+    i18n.select("de");
 });
 
 class I18n {
-    constructor(lang) {
-        this.lang = lang;
-        this.json = "";
-        this.select(lang);
+    constructor() {
+        this.lang = this.getSettings();
+        this.avblLang = this.getSupportedLang();
 
         // sidebar
         this.lblSideAdd = "#s_add";
@@ -63,31 +63,34 @@ class I18n {
         this.btnModalSave = "#btnModalSave";
     }
 
+    // TODO read xml
+    getSettings() {
+        return "de";
+    }
+
+    getSupportedLang() {
+        let arr = [
+            "en", 
+            "de"
+        ];
+        return arr;
+    }
+
     select(lang) {
-        switch(lang) {
-            case "en":
+        for(let i in this.avblLang) {
+            if(this.avblLang[i] === lang) {
                 this.getJSON(`i18n/${lang}.json`)
                     .then((data) => this.translate(data));
-                break;
-
-            case "de":
-                this.getJSON(`i18n/${lang}.json`)
-                    .then((data) => this.translate(data));
-                break;
-
-            default:
-                this.getJSON(`i18n/en.json`)
-                    .then((data) => this.translate(data));
-                break;
+                return;
+            }
         }
+        this.getJSON(`i18n/en.json`)
+            .then((data) => this.translate(data));
     }
 
     async getJSON(file) {
         const result = await $.getJSON(file, function(data){});
         return result; 
-    }
-
-    getSettings() {
     }
 
     translate(data) {
