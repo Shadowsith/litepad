@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config>
   <global>
-    <cookies>false</cookies>
+    <cookies>1</cookies>
     <lang>EN</lang>
     <ui>
-      <nav></nav>
-      <btn></btn>
-      <bg></bg>
-      <editor></editor>
-      <sidebar></sidebar>
+      <fg>#fff</fg>
+      <bg>#fff</bg>
     </ui>
   </global>
   <notes>
-    <maxNum>200</maxNum>  
-    <pdfFont>Courier</pdfFont>
+    <maxFiles>100</maxFiles>  
+    <pdfFont>DejaVu Sans</pdfFont>
     <editor>SimpleMDE</editor>
   </notes>
 </config>

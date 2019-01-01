@@ -65,7 +65,7 @@ class AjaxHandler {
 
     receiveMsg(response) {
         let MsgEnum = this.MsgEnum;
-        /*let tr = new I18n().getAjaxTr();
+        let tr = gMsg;
         switch(Number(response[1])) {
             case MsgEnum.Error:
                 switch(Number(response[2])) {
@@ -119,7 +119,6 @@ class AjaxHandler {
 
             default: break;
         }
-        */
     }
 }
 

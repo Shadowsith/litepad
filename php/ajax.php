@@ -1,5 +1,6 @@
 <?php
 require("./lpad.php");
+require("./settingloader.php");
 
 $noteName = "";
 if(isset($_POST['noteName'])) {
@@ -17,6 +18,9 @@ $notePrint =    $_POST['notePrint'];
 
 $noteOpen =     $_GET['noteOpen'];
 $noteLoad =     $_GET['noteLoad']; 
+
+$getSettings = $_GET['settings'];
+$setSettings = $_POST['settings'];
 
 $note;
 
@@ -51,6 +55,16 @@ if(isset($note) && isset($noteDelete)) {
 
 if(isset($note) && isset($notePrint) && isset($noteText)) {
     $note->printNote($noteText);
+}
+
+if(isset($getSettings)) {
+    $obj = new SettingLoader();
+    print($obj->getSettings());
+}
+
+if(isset($setSettings)) {
+    $obj = new SettingLoader();
+    $obj->setSettings($setSettings);
 }
 
 ?>

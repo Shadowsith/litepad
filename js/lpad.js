@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var i18n = new I18n();
+    i18n.select("en");
     var ui = new LitepadUI();
     ui.registerHandler();
     ui.onLoad();
@@ -186,8 +188,14 @@ class ModalHandler {
         this.btnRename = "#btnModalRename";
         this.ulOpen = "#ulNoteOpen";
         this.btnDelete = "#btnModalDelete";
-        this.btnSettigns = "#btnModalSettings";
+        this.btnSettings = "#btnModalSettings";
         this.liOpen = ".noteList";
+
+        // settings
+        this.cbCookies = "#cbCookies";
+        this.inMaxNotes = "#inMaxNotes";
+        this.selPdfFont = "#selPdfFont";
+        this.selLang = "#selLang";
     }
 
     addNote() {
@@ -245,8 +253,41 @@ class ModalHandler {
         };
 
         this.ajax.post("text", data, "File couldn't deleted");
-        $.announce.success("File " + file + " deleted!");
         $(this.file).html("");
+    }
+
+    getSettings() {
+        var data = {
+            settings: "1",
+        };
+
+    }
+
+    loadSettings(json) {
+
+    }
+
+//{"cookies":{"0":"false"},"lang":{"0":"EN"},"maxFiles":{"0":"200"},"uiFgColor":{"0":"#ffb"},"uiBgColor":{"0":"#fff"},"pdfFont":{"0":"Courier"},"editor":{"0":"SimpleMDE"}}
+
+    saveSettings() {
+
+        let obj = {
+            "cookies": $(this.cbCookies).is(':checked'),
+            "lang": $(this.selLang).val(),
+            "uiFgColor": "#fff",
+            "uiBgColor": "#fff",
+            "maxFiles": $(this.inMaxNotes).val(),
+            "pdfFont": $(this.selPdfFont).val(),
+            "editor": "SimpleMDE"
+        };
+
+        let json = JSON.stringify(obj);
+        console.log(json);
+
+
+        let data = {
+            settings: json
+        };
     }
 
     registerModalHandler() {
@@ -327,5 +368,3 @@ class Editor {
     registerEditorHandler() {
     }
 }
-
-

@@ -1,8 +1,3 @@
-$(document).ready(function() {
-    var i18n = new I18n();
-    i18n.select("de");
-});
-
 class I18n {
     constructor() {
         this.lang = this.getSettings();
@@ -65,7 +60,7 @@ class I18n {
 
     // TODO read xml
     getSettings() {
-        return "de";
+        return "en";
     }
 
     getSupportedLang() {
@@ -94,6 +89,7 @@ class I18n {
     }
 
     translate(data) {
+        gMsg = data.message;
         this.translateSidebar(data);
         this.translateMainBtnDesc(data);
         this.translateModalTitle(data);

@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/lpad.css">
 
+    <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="js/i18n.js"></script>
     <script type="text/javascript" src="js/ajax.js"></script>
     <script type="text/javascript" src="js/lpad.js"></script>
@@ -233,7 +234,7 @@
               </div> 
               <div class="col-7 list-item">
                 <div class="checkbox list-content">
-                  <input id="cbCookies"type="checkbox" value="">
+                  <input id="cbCookies" type="checkbox" value="">
                 </div>
               </div>
             </div>
@@ -258,11 +259,11 @@
               <div class="col-7 list-item">
                 <div class="form-group list-content">
                   <select id="selPdfFont" class="form-control">
-                    <option>Courier</option>
-                    <option>DejaVu Sans</option>
-                    <option>Helvetica</option>
-                    <option>Times</option>
-                    <option>ZapfDingbats</option>
+                    <option value="Courier">Courier</option>
+                    <option value="DejaVu Sans">DejaVu Sans</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Times">Times</option>
+                    <option value="ZapfDingbats">ZapfDingbats</option>
                   </select>
                 </div>
               </div>
@@ -276,8 +277,8 @@
               <div class="col-7 list-item">
                 <div class="form-group list-content">
                   <select id="selLang" class="form-control">
-                    <option>EN</option>
-                    <option>DE</option>
+                    <option value="EN">EN</option>
+                    <option value="DE">DE</option>
                   </select>
                 </div>
               </div>
