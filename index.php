@@ -1,6 +1,17 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php
+        if($_SESSION['valid'] == false) {
+            header ('Location: login.php');
+            exit;
+        }
+    ?>
+
     <meta charset="utf-8"/>
     <meta name="description" content="A lightweight webbased noteeditor">
     <meta name="keywords" content="Notes, Editor, Markdown, MIT-License">
@@ -52,10 +63,11 @@
             <a id="s_delete" class="s_link" href="#modalDelete" data-toggle="modal">Delete</a>
             <a id="s_settings" class="s_link" href="#modalSettings" data-toggle="modal">Settings</a>
             <a id="s_info" class="s_link" href="#modalInfo" data-toggle="modal">Information</a>
+            <a id="s_logout" class="s_link" href="logout.php">Logout</a>
           </div>
 
           <div class="collapse navbar-collapse" id="nav_collapse">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <button id="btnAdd" class="btn material-icons" data-toggle="modal" 
                   data-target="#modalAdd" title="adds a note">
@@ -104,6 +116,11 @@
                   data-target="#modalInfo" title="shows application info">
                   info 
                 </button>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+              <a class="nav-link" href="logout.php">Logout</a>
               </li>
            </ul>
           </div>
