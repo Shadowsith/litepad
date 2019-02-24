@@ -1,5 +1,5 @@
 # lpad
-A lightweight webbased notepad with mardown support
+A lightweight webbased notepad with markdown support
 
 ---
 <img src="https://shadowsith.de/samples/lpad.png" alt="Example" height="400" width="auto">
@@ -7,13 +7,13 @@ A lightweight webbased notepad with mardown support
 ---
 
 ## Requirements
-lpad requires only **PHP** installed on your webserver.<br>
+lpad requires only **PHP** and (soon) MySQL installed on your webserver.<br>
 Bootstrap, jQuery and all other libraries are included by default. See below for more information.
 
 ## Features
 This application is under active development and needs some time for the first release version
 
-### Impmented
+### Implemented
 * Mobile and desktop support
 * Create/save/open notes
 * Markdown support and viewer
@@ -22,16 +22,10 @@ This application is under active development and needs some time for the first r
 
 ### Todo
 * login
-* Printing and preview the markdown layout
-* Save note as pdf
-* Security features 
-* simple php configuration file
-* notifications if files have saved/load/print successful
+* switch from text files to mysql db
 
 ### In later versions
-* encrypt your textfiles by default (asks for decryption-key if you will open it)
 * change UI colors/colorschemes
-* version with SQLite implementation
 
 ## Where will my notes be saved?
 * The notes will be saved as simple textfiles under lpad/notes
