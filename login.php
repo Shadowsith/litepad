@@ -25,23 +25,27 @@
     <div class="container form-signin border border-dark mt-5 pl-5 pr-5">
       <h2>Lpad Login</h2>
         <?php
+            require('./php/config.php');
             require('./php/mysql.php');
             $msg = '';
 
-            if (isset($_POST['login']) && !empty($_POST['username'])
+            if(isset($_POST['login']) && !empty($_POST['username'])
                && !empty($_POST['password'])) {
                 
-               $db = new SqlCon($_POST['username'], $_POST['password']);
+                $db = new SqlCon($db_server, $db_user, $db_pw, $db_schema);
 
-               if ($db->hasConn()) {
-                  $_SESSION['valid'] = true;
-                  $_SESSION['timeout'] = time();
-                  $_SESSION['username'] = 'admin';
-                  header('Location: index.php');
-               }else {
-                  $_SESSION['valid'] = false;
-                  $msg = 'Wrong username or password';
-               }
+                if($db->hasConn()) {
+                
+                    if($db->isUserValid($_POST['username'], $_POST['password'])) {
+                      $_SESSION['valid'] = true;
+                      $_SESSION['timeout'] = time();
+                      $_SESSION['username'] = $_POST['username'];
+                      header('Location: index.php');
+                      return;
+                    }
+                }                    
+                $_SESSION['valid'] = false;
+                $msg = 'Wrong username or password';
             }
         ?>
       <form class="form-signin" role="form" 

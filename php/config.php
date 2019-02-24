@@ -7,5 +7,6 @@ $configNoteValue = 200;
 $db_server = "localhost";
 $db_user = "lpad_user";
 $db_pw = "lpad";
+$db_schema = "lpad";
 
 ?>
