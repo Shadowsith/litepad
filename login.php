@@ -25,13 +25,15 @@
     <div class="container form-signin border border-dark mt-5 pl-5 pr-5">
       <h2>Lpad Login</h2>
         <?php
+            require('./php/mysql.php');
             $msg = '';
 
             if (isset($_POST['login']) && !empty($_POST['username'])
                && !empty($_POST['password'])) {
+                
+               $db = new SqlCon($_POST['username'], $_POST['password']);
 
-               if ($_POST['username'] == 'admin' &&
-                  $_POST['password'] == 'admin') {
+               if ($db->hasConn()) {
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = 'admin';
@@ -46,9 +48,9 @@
           action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
         <h4 class="form-signin-heading"><?php echo $msg; ?></h4>
         <input type="text" class="form-control" 
-          name="username" placeholder="username = admin" required autofocus></br>
+          name="username" required autofocus></br>
         <input type="password" class="form-control"
-          name="password" placeholder="password = admin" required>
+          name="password" required>
         <p></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit" 
           name="login">Login</button>
