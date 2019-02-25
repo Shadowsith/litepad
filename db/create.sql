@@ -3,6 +3,7 @@
 CREATE TABLE IF NOT EXISTS lpad_users (
   user_id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
   password VARCHAR(255) NOT NULL /* will be saved as hash */
 ) ENGINE = InnoDB;
 

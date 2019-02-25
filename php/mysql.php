@@ -5,7 +5,7 @@ class SqlCon
     private $conn = null;
     private $algo = "sha512";
 
-    function __construct($server, $user, $pw, $schema) {
+    public function __construct($server, $user, $pw, $schema) {
         $this->conn = new mysqli($server, $user, $pw, $schema);
 
         if($this->conn->connect_error) {
@@ -15,14 +15,14 @@ class SqlCon
         }
     }
 
-    function hasConn() {
+    public function hasConn() {
         if($this->conn != null) {
             return true;
         }
         else return false;
     }
 
-    function addNewUser($user, $pw) {
+    public function addNewUser($user, $pw) {
         $decrypt_pw = hash($this->algo, $pw);
         $sql = sprintf("SELECT user_id FROM lpad_users WHERE name = '%s'", $user); 
         $insert = sprintf("INSERT INTO lpad_users (name, password) 
@@ -39,7 +39,7 @@ class SqlCon
         return false;
     }
 
-    function isUserValid($user, $pw) {
+    public function isUserValid($user, $pw) {
         $decrypt_pw = hash($this->algo, $pw);
         $sql = sprintf("SELECT user_id, password FROM lpad_users 
             WHERE name = '%s' AND password = '%s'", $user, $decrypt_pw); 

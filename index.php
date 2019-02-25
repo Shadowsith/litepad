@@ -63,7 +63,7 @@ session_start();
             <a id="s_delete" class="s_link" href="#modalDelete" data-toggle="modal">Delete</a>
             <a id="s_settings" class="s_link" href="#modalSettings" data-toggle="modal">Settings</a>
             <a id="s_info" class="s_link" href="#modalInfo" data-toggle="modal">Information</a>
-            <a id="s_logout" class="s_link" href="logout.php">Logout</a>
+            <a id="s_logout" class="s_link" href="./php/logout.php">Logout</a>
           </div>
 
           <div class="collapse navbar-collapse" id="nav_collapse">

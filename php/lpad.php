@@ -1,5 +1,6 @@
 <?php
 require('config.php'); 
+require('mysql.php');
 require('vendor/autoload.php');
 
 use Dompdf\Dompdf;
@@ -29,6 +30,7 @@ class NoteIO
     private const NOTEFOLDER = "../notes/";  
     private const PDFFOLDER = "../pdf/";
 
+    private $db;
     private $noteName; 
     private $path; 
 

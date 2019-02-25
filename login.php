@@ -17,13 +17,12 @@
     <script type="text/javascript" src="lib/jquery-announce/jquery.announce.min.js"></script>
     <script type="text/javascript" src="lib/jquery.caret/jquery.caret.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="lib/simpleMDE/simplemde.min.js"></script>
 
-    <title>Lpad Login</title>  
+    <title>Sign in to Lpad</title>  
   </head>
   <body>
-    <div class="container form-signin border border-dark mt-5 pl-5 pr-5">
-      <h2>Lpad Login</h2>
+    <div class="container form-signin border mt-5 pl-5 pr-5">
+      <h3 class="mb-3">Sign in to Lpad</h3>
         <?php
             require('./php/config.php');
             require('./php/mysql.php');
@@ -48,17 +47,18 @@
                 $msg = 'Wrong username or password';
             }
         ?>
-      <form class="form-signin" role="form" 
-          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-        <h4 class="form-signin-heading"><?php echo $msg; ?></h4>
-        <input type="text" class="form-control" 
-          name="username" required autofocus></br>
-        <input type="password" class="form-control"
-          name="password" required>
-        <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" 
-          name="login">Login</button>
-        <p></p>
+      <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <div class="form-group">
+          <label id="lblUsername" for="username">Username:</label> 
+          <input id="username "type="text" class="form-control" name="username" required autofocus/>
+        </div>
+        <div class="form-group">
+          <label id="lblPassword" for="password">Password:</label>
+          <input id="password" type="password" class="form-control" name="password" required/>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block mb-5" type="submit" name="login">
+          Login
+        </button>
       </form>
     </div> 
   </body>
