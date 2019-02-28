@@ -80,3 +80,4 @@ BEFORE DELETE ON lpad_users
 		DELETE FROM lpad_user_settings WHERE lpad_user_settings.user_id = OLD.user_id; ||
 
 INSERT INTO lpad_users (name, email, password) VALUES('admin', 'admin@test.com', SHA2('admin', 512));
+INSERT INTO lpad_notes (name, text, user_id) VALUES('Default', 'Hello World', 1);

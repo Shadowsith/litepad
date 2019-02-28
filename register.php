@@ -25,19 +25,19 @@
       <form>
         <div class="form-group">
           <label id="lblUsername" for="username">Username:</label> 
-          <input id="username" type="text" class="form-control" autofocus/>
+          <input id="username" type="text" class="form-control" required autofocus/>
         </div>
         <div class="form-group">
           <label id="lblUsername" for="email">E-Mail Address:</label> 
-          <input id="email" type="email" class="form-control"/>
+          <input id="email" type="email" class="form-control" required/>
         </div>
         <div class="form-group">
           <label id="lblPassword" for="password">Password:</label>
-          <input id="password" type="password" class="form-control"/>
+          <input id="password" type="password" class="form-control" required/>
         </div>
         <div class="form-group">
           <label id="lblPassword2" for="password2">Reapeat Password:</label>
-          <input id="password2" type="password" class="form-control"/>
+          <input id="password2" type="password" class="form-control" required/>
         </div>
 
       </form>

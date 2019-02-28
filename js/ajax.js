@@ -19,7 +19,7 @@ class AjaxHandler {
             "File_pdf":2,
             "File_renamed":3,
             "File_added":4,
-        }
+        };
         return enumeration;
     }
     

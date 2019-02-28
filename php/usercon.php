@@ -1,30 +1,20 @@
 <?php
+require_once(dirname(__FILE__).'/mysqlcon.php');
 
-class SqlCon
+class UserCon extends MySqlCon
 {
-    private $conn = null;
     private $algo = "sha512";
+    private $max_user = 0;
 
-    public function __construct($server, $user, $pw, $schema) {
-        $this->conn = new mysqli($server, $user, $pw, $schema);
-
-        if($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-            $this->conn->close();
-            $this->conn = null;
-        }
-    }
-
-    public function hasConn() {
-        if($this->conn != null) {
-            return true;
-        }
-        else return false;
+    //public function __construct($server, $user, $pw, $schema, $max_user) {
+    public function __construct($data) {
+        parent::__construct($data);
+        $this->max_user = $data->{'max_user'};
     }
 
     public function hasUserName($user) {
         $sql = sprintf("SELECT name FROM lpad_users WHERE name = '%s'", $user);
-        $result = $this->conn->query($sql);
+        $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {
             return true;
         }
@@ -39,11 +29,11 @@ class SqlCon
                            VALUES ('%s', '%s', '%s')", 
                            $user, $email, $decrypt_pw);
 
-        $result = $this->conn->query($sql);
+        $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {
             return false;
         }
-        if($this->conn->query($insert) === true) {
+        if($this->getConn()->query($insert) === true) {
             return true;
         }  
         return false;
@@ -54,7 +44,7 @@ class SqlCon
         $sql = sprintf("SELECT user_id, password FROM lpad_users 
             WHERE name = '%s' AND password = '%s'", $user, $decrypt_pw); 
         
-        $result = $this->conn->query($sql);
+        $result = $this->getConn()->query($sql);
         if ($result->num_rows > 0) {
             return true;
         } else {

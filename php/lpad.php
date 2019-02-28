@@ -1,6 +1,5 @@
 <?php
 require('config.php'); 
-require('mysql.php');
 require('vendor/autoload.php');
 
 use Dompdf\Dompdf;

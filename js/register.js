@@ -50,6 +50,7 @@ class RegistrationHandler {
 
     sendToBackend(user, email, pw) {
         const data = {
+            'event': 'register',
             'user': user,
             'email': email,
             'pw': pw

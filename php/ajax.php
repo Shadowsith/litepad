@@ -1,6 +1,8 @@
 <?php
-require("./lpad.php");
-require("./settingloader.php");
+require_once(dirname(__FILE__).'/config.php');
+require_once(dirname(__FILE__).'/lpad.php');
+require_once(dirname(__FILE__).'/settingloader.php');
+require_once(dirname(__FILE__).'/ajaxhandler.php');
 
 $noteName = "";
 if(isset($_POST['noteName'])) {
@@ -24,20 +26,8 @@ $setSettings = $_POST['settings'];
 
 $note;
 
-if(isset($_POST['user']) && isset($_POST['email']) && isset($_POST['pw'])) {
-    $user = $_POST['user'];
-    $mail = $_POST['email'];
-    $pw = $_POST['pw'];
-
-    $db = new SqlCon($db_server, $db_user, $db_pw, $db_schema);
-    if($db->hasConn()) {
-        if(!$db->hasUserName($user)) {
-            if($db->addNewUser($user, $mail, $pw)) {
-                print 'true';
-            }
-        }
-    }
-}
+$ajax = new AjaxHandler($_POST);
+$ajax->executeEvent($db_data);
 
 if(isset($noteName)) {
     $note = new NoteIO($noteName); 

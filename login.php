@@ -24,15 +24,14 @@
     <div class="container form-signin border mt-5 pl-5 pr-5">
       <h3 class="mb-3">Sign in to Lpad</h3>
         <?php
-            require('./php/config.php');
-            require('./php/mysql.php');
-            $msg = '';
+            require_once('./php/config.php');
+            require_once('./php/usercon.php');
 
+            $msg = '';
             if(isset($_POST['login']) && !empty($_POST['username'])
                && !empty($_POST['password'])) {
                 
-                $db = new SqlCon($db_server, $db_user, $db_pw, $db_schema);
-
+                $db = new UserCon($db_data);
                 if($db->hasConn()) {
                 
                     if($db->isUserValid($_POST['username'], $_POST['password'])) {
