@@ -97,7 +97,7 @@ class LitepadUI {
         $(this.btnApp).show();
         $(this.conNav).removeClass("container");
         $(this.file).addClass(this.mlFile);
-        $(this.content).removeClass("container")
+        $(this.content).removeClass("container");
         $(this.content).addClass("container-fluid");
         $(this.fork).removeClass("d-flex").hide();
     }
@@ -113,7 +113,7 @@ class LitepadUI {
                 $(this.fork).addClass("d-flex").show();
                 $(this.conNav).addClass("container");
                 $(this.file).removeClass(this.mlFile);
-                $(this.content).removeClass("container-fluid")
+                $(this.content).removeClass("container-fluid");
                 $(this.content).addClass("container");
             }
         }
@@ -180,7 +180,7 @@ class ModalHandler {
         this.mOpen = "#modalOpen";
         this.mMove = "#modalMove";
         this.mDelete = "#modalDelete";
-        this.mSettings = "#modalSettings"
+        this.mSettings = "#modalSettings";
 
         this.inAdd = "#inModalAdd";
         this.btnAdd = "#btnModalAdd";
@@ -207,7 +207,7 @@ class ModalHandler {
         var data = {
             noteName: $(this.inAdd).val(), 
             noteAdd: "1"
-        }
+        };
 
         this.ajax.post("text", data, "File couldn't add!"); 
         $(this.file).html($(this.inAdd).val());
@@ -267,7 +267,6 @@ class ModalHandler {
 
     }
 
-//{"cookies":{"0":"false"},"lang":{"0":"EN"},"maxFiles":{"0":"200"},"uiFgColor":{"0":"#ffb"},"uiBgColor":{"0":"#fff"},"pdfFont":{"0":"Courier"},"editor":{"0":"SimpleMDE"}}
 
     saveSettings() {
 
@@ -299,7 +298,7 @@ class ModalHandler {
 
         $(this.btnRename).click(function() {
             self.moveNote();
-        })
+        });
 
         $(this.btnDelete).click(function() {
             self.deleteNote();

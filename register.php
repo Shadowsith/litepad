@@ -20,29 +20,30 @@
     <title>Sign up to Lpad</title>  
   </head>
   <body>
-    <div class="container form-signin border mt-5 pl-5 pr-5">
+    <div class="container border mt-5 pl-5 pr-5">
       <h3 class="mb-3">Registration on Lpad</h3>
       <form>
         <div class="form-group">
           <label id="lblUsername" for="username">Username:</label> 
-          <input id="username" type="text" class="form-control" name="username" required autofocus/>
+          <input id="username" type="text" class="form-control" autofocus/>
         </div>
         <div class="form-group">
-          <label id="lblUsername" for="username">E-Mail Address:</label> 
-          <input id="email" type="email" class="form-control" name="username" required autofocus/>
+          <label id="lblUsername" for="email">E-Mail Address:</label> 
+          <input id="email" type="email" class="form-control"/>
         </div>
         <div class="form-group">
           <label id="lblPassword" for="password">Password:</label>
-          <input id="password" type="password" class="form-control" name="password" required/>
+          <input id="password" type="password" class="form-control"/>
         </div>
         <div class="form-group">
           <label id="lblPassword2" for="password2">Reapeat Password:</label>
-          <input id="password2" type="password" class="form-control" name="password" required/>
+          <input id="password2" type="password" class="form-control"/>
         </div>
-        <button id="btnRegister" class="btn btn-lg btn-success btn-block mb-4" type="submit" name="create">
-          Create Account
-        </button>
+
       </form>
+      <button id="btnRegister" class="btn btn-success btn-lg btn-block mb-4">
+        Create Account
+      </button>
     </div> 
   </body>
 </html>
