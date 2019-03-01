@@ -21,10 +21,23 @@ class UserCon extends MySqlCon
         return false;
     }
 
+    public function getUserId($user) {
+        $sql = sprintf("SELECT user_id FROM lpad_users WHERE name = '%s'", 
+                        $user);
+
+        $result = $this->getConn()->query($sql);
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row['user_id'];
+            }
+        }
+    }
+
     public function addNewUser($user, $email, $pw) {
         $decrypt_pw = hash($this->algo, $pw);
         $sql = sprintf("SELECT user_id FROM lpad_users WHERE name = '%s'", 
                         $user); 
+
         $insert = sprintf("INSERT INTO lpad_users (name, email, password) 
                            VALUES ('%s', '%s', '%s')", 
                            $user, $email, $decrypt_pw);

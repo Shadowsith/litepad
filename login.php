@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/jquery-announce/jquery.announce.css">
 
     <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="lib/jquery-announce/jquery.announce.min.js"></script>
@@ -24,8 +25,8 @@
     <div class="container form-signin border mt-5 pl-5 pr-5">
       <h3 class="mb-3">Sign in to Lpad</h3>
         <?php
-            require_once('./php/config.php');
-            require_once('./php/usercon.php');
+            require_once './php/config.php';
+            require_once './php/usercon.php';
 
             $msg = '';
             if(isset($_POST['login']) && !empty($_POST['username'])
@@ -38,6 +39,7 @@
                       $_SESSION['valid'] = true;
                       $_SESSION['timeout'] = time();
                       $_SESSION['username'] = $_POST['username'];
+                      $_SESSION['user_id'] = $db->getUserId($_POST['username']);
                       header('Location: index.php');
                       return;
                     }

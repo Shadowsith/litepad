@@ -1,17 +1,17 @@
 <?php
-require_once(dirname(__FILE__).'/usercon.php');
+require_once dirname(__FILE__).'/usercon.php';
 
 class AjaxHandler {
-    # event
+    // event
     private $event;
 
-    # lpad user 
+    // lpad user 
     private $user;
     private $email;
     private $pw;
     private $pwVerify;
 
-    # note data
+    // note data
     private $text;
     private $save;
     private $delete;
@@ -22,7 +22,7 @@ class AjaxHandler {
     private $open;
     private $load;
 
-    # ajax data
+    // ajax data
     private $post_values;
 
     public function __construct($POST) {
@@ -38,7 +38,7 @@ class AjaxHandler {
     }
 
     private function setGivenValues($POST) {
-        foreach ($this->post_values as $val) { 
+        foreach($this->post_values as $val) { 
             if(isset($POST[$val])) {
                 $this->{$val} = $POST[$val]; 
             }
