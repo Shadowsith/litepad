@@ -1,6 +1,6 @@
 <?php namespace Lpad;
-require_once(dirname(__FILE__).'/mysqlcon.php');
-require_once(dirname(__FILE__).'/table.php');
+require_once(dirname(__FILE__).'/MySqlCon.php');
+require_once(dirname(__FILE__).'/Table.php');
 
 class UserCon extends MySqlCon {
     private $algo = "sha512";
@@ -39,9 +39,9 @@ class UserCon extends MySqlCon {
         $sql = sprintf("SELECT user_id FROM %s WHERE name = '%s'", 
             Table::USERS, $user); 
 
-        $insert = sprintf("INSERT INTO lpad %s (name, email, password) ".
+        $insert = sprintf("INSERT INTO %s (name, email, password) ".
             "VALUES ('%s', '%s', '%s')", 
-                           Table::USERS, $user, $email, $decrypt_pw);
+            Table::USERS, $user, $email, $decrypt_pw);
 
         $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {

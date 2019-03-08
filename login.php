@@ -26,7 +26,7 @@
       <h3 class="mb-3">Sign in to Lpad</h3>
         <?php
             require_once './php/config.php';
-            require_once './php/usercon.php';
+            require_once './php/UserCon.php';
 
             $msg = '';
             if(isset($_POST['login']) && !empty($_POST['username'])

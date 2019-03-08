@@ -1,7 +1,11 @@
 <?php namespace Lpad;
-require_once dirname(__FILE__).'/usercon.php';
+require_once(dirname(__FILE__).'/UserCon.php');
+require_once(dirname(__FILE__).'/NoteCon.php');
 
 class AjaxHandler {
+    //conncetion
+    private $db_data;
+
     // event
     private $event;
 
@@ -19,48 +23,37 @@ class AjaxHandler {
     private $move;
     private $print;
 
-    private $open;
-    private $load;
-
-    // ajax data
-    private $post_values;
-
-    public function __construct($POST) {
-        $this->addPostFields();
+    public function __construct($POST, $db_data) {
+        $this->db_data = $db_data;
         $this->setGivenValues($POST);
     }
 
-    private function addPostFields() {
-        $this->post_values = [];
-        array_push($this->post_values, 'user', 'email', 'pw', 'pwVerify');
-        array_push($this->post_values, 'text', 'save', 'delete', 'add', 'move');
-        array_push($this->post_values, 'print', 'open', 'load', 'event');
-    }
-
     private function setGivenValues($POST) {
-        foreach($this->post_values as $val) { 
-            if(isset($POST[$val])) {
-                $this->{$val} = $POST[$val]; 
+        foreach($this as $key => $val) { 
+            if($key != 'db_data') {
+                if(isset($POST[$key])) {
+                    $this->{$key} = $POST[$key]; 
+                }
             }
         }
     }
 
-    public function executeEvent($db_data) {
+    public function executeEvent() {
         switch($this->event) {
             case 'login': 
-                $this->login($db_data);
+                $this->login();
                 break;
             case 'register': 
-                $this->register($db_data);
+                $this->register();
                 break;
 
             default: break;
         } 
     }
 
-    private function login($db_data) {
+    private function login() {
         if(isset($this->user) && isset($this->pw)) {
-            $db = new UserCon($db_data);
+            $db = new UserCon($this->db_data);
             if($db->hasConn()) {
                 if($db->isUserValid($this->user)) {
                     $_SESSION['valid'] = true;
@@ -74,9 +67,9 @@ class AjaxHandler {
         }
     }
 
-    private function register($db_data) {
+    private function register() {
         if(isset($this->user) && isset($this->email) && isset($this->pw)) {
-            $db = new UserCon($db_data);
+            $db = new UserCon($this->db_data);
             if($db->hasConn()) {
                 if(!$db->hasUserName($this->user)) {
                     if($db->addNewUser($this->user, $this->email, $this->pw)) {
@@ -85,6 +78,28 @@ class AjaxHandler {
                 }
             }
         }
+    }
+
+    private function addNote() {
+        if(isset($this->text)) {
+        
+        }
+    }
+
+    private function updateNote() {
+    
+    }
+
+    private function moveNote() {
+    
+    }
+
+    private function deleteNote() {
+    
+    }
+
+    private function printNote() {
+    
     }
 }
 ?>

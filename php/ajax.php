@@ -1,75 +1,76 @@
 <?php namespace Lpad;
 require_once(dirname(__FILE__).'/config.php');
-require_once(dirname(__FILE__).'/lpad.php');
-require_once(dirname(__FILE__).'/settingloader.php');
-require_once(dirname(__FILE__).'/ajaxhandler.php');
+// require_once(dirname(__FILE__).'/lpad.php');
+// require_once(dirname(__FILE__).'/settingloader.php');
+require_once(dirname(__FILE__).'/AjaxHandler.php');
 
-$noteName = "";
-if(isset($_POST['noteName'])) {
-    $noteName =  $_POST['noteName'];
-} else if (isset($_GET['noteName'])) {
-    $noteName = $_GET['noteName'];
-}
+$ajax = new AjaxHandler($_POST, $db_data);
+$ajax->executeEvent();
 
-$noteText =     $_POST['noteText'];
-$noteSave =     $_POST['noteSave'];
-$noteDelete =   $_POST['noteDelete']; 
-$noteAdd =      $_POST['noteAdd'];
-$noteMove =     $_POST['noteMove'];
-$notePrint =    $_POST['notePrint'];
 
-$noteOpen =     $_GET['noteOpen'];
-$noteLoad =     $_GET['noteLoad']; 
+/* $noteName = ""; */
+/* if(isset($_POST['noteName'])) { */
+/*     $noteName =  $_POST['noteName']; */
+/* } else if (isset($_GET['noteName'])) { */
+/*     $noteName = $_GET['noteName']; */
+/* } */
 
-$getSettings = $_GET['settings'];
-$setSettings = $_POST['settings'];
+/* $noteText =     $_POST['noteText']; */
+/* $noteSave =     $_POST['noteSave']; */
+/* $noteDelete =   $_POST['noteDelete']; */ 
+/* $noteAdd =      $_POST['noteAdd']; */
+/* $noteMove =     $_POST['noteMove']; */
+/* $notePrint =    $_POST['notePrint']; */
 
-$note;
+/* $noteOpen =     $_GET['noteOpen']; */
+/* $noteLoad =     $_GET['noteLoad']; */ 
 
-$ajax = new AjaxHandler($_POST);
-$ajax->executeEvent($db_data);
+/* $getSettings = $_GET['settings']; */
+/* $setSettings = $_POST['settings']; */
 
-if(isset($noteName)) {
-    $note = new NoteIO($noteName); 
-}
+/* $note; */
 
-if(isset($note) && isset($noteSave) && isset($noteText)) {
-    $note->writeNote($noteText); 
-}
+/* if(isset($noteName)) { */
+/*     $note = new NoteIO($noteName); */ 
+/* } */
 
-if(isset($note) && isset($noteAdd)) {
-    $note->createNote(); 
-}
+/* if(isset($note) && isset($noteSave) && isset($noteText)) { */
+/*     $note->writeNote($noteText); */ 
+/* } */
 
-if(isset($note) && isset($noteMove)) {
-    $note->moveNote($noteMove);
-}
+/* if(isset($note) && isset($noteAdd)) { */
+/*     $note->createNote(); */ 
+/* } */
 
-if(isset($note) && isset($noteOpen)) {
-    $note->listNotes(); 
-    #print($note->readNote()); 
-}
+/* if(isset($note) && isset($noteMove)) { */
+/*     $note->moveNote($noteMove); */
+/* } */
 
-if(isset($note) && isset($noteLoad)) {
-   $note->readNote();  
-}
+/* if(isset($note) && isset($noteOpen)) { */
+/*     $note->listNotes(); */ 
+/*     #print($note->readNote()); */ 
+/* } */
 
-if(isset($note) && isset($noteDelete)) {
-    $note->deleteNote(); 
-}
+/* if(isset($note) && isset($noteLoad)) { */
+/*    $note->readNote(); */  
+/* } */
 
-if(isset($note) && isset($notePrint) && isset($noteText)) {
-    $note->printNote($noteText);
-}
+/* if(isset($note) && isset($noteDelete)) { */
+/*     $note->deleteNote(); */ 
+/* } */
 
-if(isset($getSettings)) {
-    $obj = new SettingLoader();
-    print($obj->getSettings());
-}
+/* if(isset($note) && isset($notePrint) && isset($noteText)) { */
+/*     $note->printNote($noteText); */
+/* } */
 
-if(isset($setSettings)) {
-    $obj = new SettingLoader();
-    $obj->setSettings($setSettings);
-}
+/* if(isset($getSettings)) { */
+/*     $obj = new SettingLoader(); */
+/*     print($obj->getSettings()); */
+/* } */
+
+/* if(isset($setSettings)) { */
+/*     $obj = new SettingLoader(); */
+/*     $obj->setSettings($setSettings); */
+// }
 
 ?>

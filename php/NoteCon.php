@@ -1,7 +1,7 @@
 <?php namespace Lpad;
 require_once(dirname(__FILE__).'/config.php');
-require_once(dirname(__FILE__).'/mysqlcon.php');
-require_once(dirname(__FILE__).'/table.php');
+require_once(dirname(__FILE__).'/MySqlCon.php');
+require_once(dirname(__FILE__).'/Table.php');
 
 class NoteCon extends MySqlCon {
 
