@@ -1,8 +1,8 @@
-<?php
+<?php namespace Lpad;
 require_once(dirname(__FILE__).'/mysqlcon.php');
+require_once(dirname(__FILE__).'/table.php');
 
-class UserCon extends MySqlCon
-{
+class UserCon extends MySqlCon {
     private $algo = "sha512";
     private $max_user = 0;
 
@@ -13,7 +13,8 @@ class UserCon extends MySqlCon
     }
 
     public function hasUserName($user) {
-        $sql = sprintf("SELECT name FROM lpad_users WHERE name = '%s'", $user);
+        $sql = sprintf("SELECT name FROM %s WHERE name = '%s'", 
+            Table::USERS, $user);
         $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {
             return true;
@@ -22,8 +23,8 @@ class UserCon extends MySqlCon
     }
 
     public function getUserId($user) {
-        $sql = sprintf("SELECT user_id FROM lpad_users WHERE name = '%s'", 
-                        $user);
+        $sql = sprintf("SELECT user_id FROM %s WHERE name = '%s'", 
+            Table::USERS, $user);
 
         $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {
@@ -35,12 +36,12 @@ class UserCon extends MySqlCon
 
     public function addNewUser($user, $email, $pw) {
         $decrypt_pw = hash($this->algo, $pw);
-        $sql = sprintf("SELECT user_id FROM lpad_users WHERE name = '%s'", 
-                        $user); 
+        $sql = sprintf("SELECT user_id FROM %s WHERE name = '%s'", 
+            Table::USERS, $user); 
 
-        $insert = sprintf("INSERT INTO lpad_users (name, email, password) 
-                           VALUES ('%s', '%s', '%s')", 
-                           $user, $email, $decrypt_pw);
+        $insert = sprintf("INSERT INTO lpad %s (name, email, password) ".
+            "VALUES ('%s', '%s', '%s')", 
+                           Table::USERS, $user, $email, $decrypt_pw);
 
         $result = $this->getConn()->query($sql);
         if($result->num_rows > 0) {
@@ -54,8 +55,9 @@ class UserCon extends MySqlCon
 
     public function isUserValid($user, $pw) {
         $decrypt_pw = hash($this->algo, $pw);
-        $sql = sprintf("SELECT user_id, password FROM lpad_users 
-            WHERE name = '%s' AND password = '%s'", $user, $decrypt_pw); 
+        $sql = sprintf("SELECT user_id, password FROM %s ".
+            "WHERE name = '%s' AND password = '%s'", 
+            Table::USERS, $user, $decrypt_pw); 
         
         $result = $this->getConn()->query($sql);
         if ($result->num_rows > 0) {
@@ -65,5 +67,4 @@ class UserCon extends MySqlCon
         }
     }
 }
-
 ?>

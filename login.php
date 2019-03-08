@@ -32,7 +32,7 @@
             if(isset($_POST['login']) && !empty($_POST['username'])
                && !empty($_POST['password'])) {
                 
-                $db = new UserCon($db_data);
+                $db = new Lpad\UserCon($db_data);
                 if($db->hasConn()) {
                 
                     if($db->isUserValid($_POST['username'], $_POST['password'])) {

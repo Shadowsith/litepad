@@ -1,7 +1,7 @@
-<?php
+<?php namespace Lpad;
+use mysqli;
 
-class MySqlCon
-{
+class MySqlCon {
     private $conn = null;
 
     //public function __construct($server, $user, $pw, $schema, $max_user) {

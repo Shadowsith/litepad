@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lpad;
 require_once dirname(__FILE__).'/usercon.php';
 
 class AjaxHandler {

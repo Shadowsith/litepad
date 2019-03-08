@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lpad;
 require('config.php'); 
 require('vendor/autoload.php');
 

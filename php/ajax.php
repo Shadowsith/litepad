@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lpad;
 require_once(dirname(__FILE__).'/config.php');
 require_once(dirname(__FILE__).'/lpad.php');
 require_once(dirname(__FILE__).'/settingloader.php');
